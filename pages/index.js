@@ -24,7 +24,7 @@ export default function Home() {
       <main className=" flex  h-max ">
         <div className=" w-3/5 m-6 h-max">
           <div>
-            <Search filteredData={theme} itemsPerPage={4} />
+            <Search filteredData={theme} itemsPerPage={6} />
           </div>
         </div>
         <div className=" w-2/5 m-6 h-max ">

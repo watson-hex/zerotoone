@@ -33,38 +33,16 @@ export default function Mainlayout({ children }) {
   }, []);
 
   return (
-    // <div className=" min-h-screen">
-    //   <div className=" h-screen bg-sky-50">
-    //     <div className=" mb-12 ">
-    //       <Header handleSearch={handleSearch} />
-    //     </div>
-
-    //     <Footer />
-    //   </div>
-    // </div>
-    // <div className="flex flex-col h-screen justify-between">
-    //   <header className=" bg-red-500">
-    //     <Header handleSearch={handleSearch} />
-    //   </header>
-    //   <main className="  bg-green-500">
-    //     {" "}
-    //     <Cardstoshow.Provider value={filteredData}>
-    //       <main>{children}</main>
-    //     </Cardstoshow.Provider>
-    //   </main>
-    //   <footer className="h-10 bg-blue-500">Footer</footer>
-    // </div>
-
-    <div className="h-screen bg-blue-100">
+    <div className="h-screen bg-sky-50">
       <header className="">
         <Header handleSearch={handleSearch} />
       </header>
-      <main className="h-full bg-blue-100">
+      <main className="h-full bg-sky-50">
         <Cardstoshow.Provider value={filteredData}>
           <main>{children}</main>
         </Cardstoshow.Provider>
       </main>
-      <footer className="h-10 bg-white-100">Footer</footer>
+      <footer className="h-10bg-sky-50">Footer</footer>
     </div>
   );
 }

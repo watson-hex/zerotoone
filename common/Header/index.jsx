@@ -15,11 +15,11 @@ export default function Header(props) {
   };
 
   return (
-    <nav className="bg-sky-50 z-50  flex items-center flex-wrap bg-white p-3  rounded-b-3xl drop-shadow-md ">
+    <nav className="bg-sky-50 z-50  flex items-center flex-wrap bg-white p-3 rounded-b-3xl drop-shadow-md ">
       <Link href="/">
-        <a className="inline-flex items-center  mr-4 ">
+        <a className="inline-flex items-center mr-4 ">
           <Image src={Logo} alt="Hello" />
-          <span className=" text-indigo-800 text-3xl  font-bold pl-2 tracking-wide">
+          <span className=" text-indigo-800 text-3xl font-bold pl-2 tracking-wide">
             Zero2One
           </span>
         </a>

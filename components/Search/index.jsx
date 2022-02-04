@@ -54,7 +54,6 @@ export default function Search(props) {
 
   return (
     <>
-      <Items currentItems={currentItems} />
       <div>
         <ReactPaginate
           nextLabel="next >"
@@ -72,33 +71,12 @@ export default function Search(props) {
           breakLabel="..."
           breakClassName="z-10 bg-indigo-50 border-blue-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
           breakLinkClassName="page-link "
-          containerClassName="pagination flex flex-nowrap mt-6 "
+          containerClassName="pagination flex flex-nowrap mb-6 "
           activeClassName="active"
           renderOnZeroPageCount={null}
         />
       </div>
+      <Items currentItems={currentItems} />
     </>
   );
 }
-
-// export default function Search(props) {
-//   return (
-//     <div className="md:grid grid-cols-2 gap-2">
-//       {props.filteredData.map((value, index) => {
-//         return (
-//           <div key={value.id}>
-//             <Projectcard
-//               ID={"Project1"}
-//               Pname={"Project Name"}
-//               PSdesc={value.title}
-//               Bookmarked={false}
-//               Status={"Ongoing"}
-//               Open={"Collaborate"}
-//               Memberlist={"3 members"}
-//             />
-//           </div>
-//         );
-//       })}
-//     </div>
-//   );
-// }
