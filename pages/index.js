@@ -24,10 +24,10 @@ export default function Home() {
       <main className=" flex  h-max ">
         <div className=" w-3/5 m-6 h-max">
           <div>
-            <Search filteredData={theme} />
+            <Search filteredData={theme} itemsPerPage={4} />
           </div>
         </div>
-        <div className=" w-2/5 m-6 h-max  ">
+        <div className=" w-2/5 m-6 h-max ">
           <div className=" drop-shadow-md rounded-xl bg-white p-4">
             <div className="">
               <Image src={Cardheading} alt="Picture of the author" />
