@@ -53,36 +53,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      {/* <main className="">
-        <div className="">
-          <div>
-            <Search filteredData={theme} itemsPerPage={6} />
-          </div>
-        </div>
-        <div className=" w-2/5 m-6 h-max ">
-          <div className=" drop-shadow-md rounded-xl bg-white p-4">
-            <div className="">
-              <Image src={Cardheading} alt="Picture of the author" />
-            </div>
-            <div className="mt-12">
-              <p className="text-xl pt-5 pr-5 pb-5">
-                ZeroToOne, is a unique community started by IIITD E-Cell, to
-                help students become entrepreneurs. It helps students in forming
-                their idea from the scratch to the next level where they are
-                ready to step into the big leagues.
-              </p>
-              <p className="text-xl pt-5 pr-5 pb-5">
-                Guidlines and other Information, Lorem Ipsum is simply dummy
-                text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry&apos;s standard dummy text ever since the
-                1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book.{" "}
-              </p>
-            </div>
-          </div>
-        </div>
-      </main> */}
     </div>
   );
 }

@@ -34,7 +34,7 @@ function Stage1(props) {
                   props.nextStage();
                 }}
               >
-                <div className=" md:ml-14 md:flex md:flex-wrap overflow-hidden  mx-5 md:mx-0 ">
+                <div className=" md:ml-14 md:flex md:flex-wrap overflow-hidden mx-5 md:mx-0 ">
                   <div className="flex flex-col w-full md:w-1/2 mb-4">
                     <label className=" mb-2 text-xl  ">Project Name</label>
                     <input

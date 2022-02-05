@@ -22,7 +22,7 @@ export default function Projectcard(props) {
               className="h-44 m-2 rounded-xl text-white relative "
               style={{ backgroundColor: "#6A98BF" }}
             >
-              <div className="text-xl text-left ml-3 font-semibold absolute inset-x-0 top-2 ">
+              <div className="text-2xl md:text-3xl text-left ml-3 font-semibold absolute inset-x-0 top-2 ">
                 {props.Pname}
               </div>
               <div className="absolute inset-x-0 bottom-0 m-3 ">
