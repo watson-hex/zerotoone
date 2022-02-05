@@ -31,7 +31,8 @@ function Stage1(props) {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  props.nextStage();
+                  props.projectSubmission();
+                  // call next stage after submission
                 }}
               >
                 <div className=" md:ml-14 md:flex md:flex-wrap overflow-hidden mx-5 md:mx-0 ">
@@ -75,7 +76,7 @@ function Stage1(props) {
                     </label>
                     <textarea
                       type="text"
-                      name="desription"
+                      name="description"
                       onChange={(e) => {
                         props.updateProjectHandler(
                           [e.target.name],
@@ -127,7 +128,7 @@ function Stage1(props) {
                     <label className=" mb-2 text-xl ">Associated Tags</label>
                     <input
                       type="text"
-                      name="duration"
+                      name="tags"
                       onChange={(e) => {
                         props.updateProjectHandler(
                           [e.target.name],
@@ -172,7 +173,7 @@ function Stage1(props) {
                           type="checkBox"
                           id="toggleB"
                           className="sr-only"
-                          name="visibility"
+                          name="hidden"
                           onClick={(e) => {
                             props.updateProjectHandler(
                               [e.target.name],
@@ -233,9 +234,9 @@ function Stage2(props) {
       props.setmembersDetails([
         ...props.membersDetails,
         {
-          fullName: "Full Name",
-          emailID: "IIITD Email",
-          socialink: "Social link",
+          fullName: "",
+          emailID: "",
+          socialink: "",
         },
       ]);
     }
@@ -282,24 +283,39 @@ function Stage2(props) {
                         <div className="md:w-1/3 md:min-w-1/3 mb-1">
                           <input
                             type="text"
-                            name="Project Name"
+                            name="fullName"
                             placeholder="Full Name "
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              props.projectSubmission();
+                              // call next stage after submission
+                            }}
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50"
                           />
                         </div>
                         <div className="md:w-1/3 mb-1">
                           <input
                             type="text"
-                            name="Project Name"
+                            name="emailID"
                             placeholder="Email"
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              props.projectSubmission();
+                              // call next stage after submission
+                            }}
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50   "
                           />
                         </div>
                         <div className="md:w-1/3 mb-1">
                           <input
                             type="text"
-                            name="Project Name"
+                            name="socialink"
                             placeholder="Social Link "
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              props.projectSubmission();
+                              // call next stage after submission
+                            }}
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50 "
                           />
                         </div>
@@ -365,10 +381,7 @@ function Stage2(props) {
                       className="sr-only"
                       name="onboarding"
                       onClick={(e) => {
-                        props.updateTeamHandler(
-                          [e.target.name],
-                          e.target.checked
-                        );
+                        props.setonboardingDetail(e.target.checked);
                       }}
                     />
                     <div className="block bg-gray-100 w-12 h-6 rounded-full"></div>

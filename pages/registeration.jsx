@@ -19,17 +19,25 @@ export default function Registeration() {
   const [projectDetails, setprojectDetails] = useState({
     name: "",
     description: "",
-    tags: [],
-    stage: "",
+    tags: "",
+    stage: "Yes",
     startedOn: "",
     duration: "",
-    visibility: true,
+    hidden: false,
   });
+
+  const projectSubmission = () => {
+    //axios calling with projectDetails as payload
+    nextStage();
+  };
+
+  const [onboardingDetail, setonboardingDetail] = useState(false);
+
   const [membersDetails, setmembersDetails] = useState([
     {
-      fullName: "Full Name",
-      emailID: "IIITD Email",
-      socialink: "Social link",
+      fullName: "",
+      emailID: "",
+      socialink: "",
     },
   ]);
 
@@ -54,6 +62,9 @@ export default function Registeration() {
     setotherDetails(...otherDetails, { [target]: value });
   };
 
+  console.log(projectDetails);
+  console.log(onboardingDetail);
+
   return (
     <div className="">
       {Stage === 0 ? (
@@ -62,12 +73,15 @@ export default function Registeration() {
           setprojectDetails={setprojectDetails}
           updateProjectHandler={updateProjectHandler}
           nextStage={nextStage}
+          projectSubmission={projectSubmission}
         />
       ) : Stage === 1 ? (
         <Stage2
           membersDetails={membersDetails}
           setmembersDetails={setmembersDetails}
+          updateMemberHandler={updateMemberHandler}
           nextStage={nextStage}
+          setonboardingDetail={setonboardingDetail}
         />
       ) : Stage === 2 ? (
         <Stage3
