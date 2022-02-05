@@ -25,13 +25,18 @@ export default function Registeration() {
     duration: "",
     hidden: false,
   });
+  const updateProjectHandler = (target, value) => {
+    console.log(target, value);
+    setprojectDetails((prevState) => ({
+      ...prevState,
+      [target]: value,
+    }));
+  };
 
   const projectSubmission = () => {
     //axios calling with projectDetails as payload
     nextStage();
   };
-
-  const [onboardingDetail, setonboardingDetail] = useState(false);
 
   const [membersDetails, setmembersDetails] = useState([
     {
@@ -41,29 +46,60 @@ export default function Registeration() {
     },
   ]);
 
+  const updateMemberHandler = (index, target, value) => {
+    console.log(index, target, value);
+
+    setmembersDetails(
+      // update a particular member
+      membersDetails.map((member) => {
+        if (membersDetails.indexOf(member) === index) {
+          return {
+            ...member,
+            [target]: value,
+          };
+        }
+        return member;
+      })
+    );
+  };
+
+  const memberSubmission = () => {
+    //axios calling with projectDetails as payload
+    nextStage();
+  };
+
+  const [onboardingDetail, setonboardingDetail] = useState(false);
+
   const [socialDetails, setsocialDetails] = useState([""]);
-  const [otherDetails, setotherDetails] = useState({
-    otherInfo: "",
-  });
 
-  const updateProjectHandler = (target, value) => {
-    console.log(target, value);
-    setprojectDetails((prevState) => ({
-      ...prevState,
-      [target]: value,
-    }));
+  const updateSocialHandler = (index, value) => {
+    console.log(index, value);
+
+    // update value of a particular socialDetails in array
+    setsocialDetails(
+      socialDetails.map((social) => {
+        if (socialDetails.indexOf(social) === index) {
+          return value;
+        }
+        return social;
+      })
+    );
   };
 
-  const updateMemberHandler = (target, value) => {
-    setmembersDetails(...membersDetails, { [target]: value });
+  const [otherDetails, setotherDetails] = useState("");
+
+  const otherSubmission = () => {
+    //axios calling with projectDetails as payload
+    nextStage();
   };
 
-  const updateOtherHandler = (target, value) => {
-    setotherDetails(...otherDetails, { [target]: value });
-  };
+  // console.log(onboardingDetail);
+  // console.log(socialDetails);
+  console.log(otherDetails);
 
-  console.log(projectDetails);
-  console.log(onboardingDetail);
+  // console.log(projectDetails);
+  // console.log(onboardingDetail);
+  // console.log(membersDetails);
 
   return (
     <div className="">
@@ -82,6 +118,7 @@ export default function Registeration() {
           updateMemberHandler={updateMemberHandler}
           nextStage={nextStage}
           setonboardingDetail={setonboardingDetail}
+          memberSubmission={memberSubmission}
         />
       ) : Stage === 2 ? (
         <Stage3
@@ -90,6 +127,8 @@ export default function Registeration() {
           socialDetails={socialDetails}
           setsocialDetails={setsocialDetails}
           nextStage={nextStage}
+          updateSocialHandler={updateSocialHandler}
+          otherSubmission={otherSubmission}
         />
       ) : Stage === 3 ? (
         <Stage4 />

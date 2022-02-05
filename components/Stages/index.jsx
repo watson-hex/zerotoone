@@ -7,7 +7,7 @@ import Stage2Pic from "../../public/assets/svg/stage2.svg";
 import Stage3Pic from "../../public/assets/svg/stage3.svg";
 import Stage4Pic from "../../public/assets/svg/stage4.svg";
 import calendar2 from "../../public/assets/svg/calendar2.svg";
-
+import Link from "next/link";
 import Email from "../../public/assets/svg/email.svg";
 
 import On1 from "../../public/assets/svg/on1.svg";
@@ -270,7 +270,8 @@ function Stage2(props) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              props.nextStage();
+              props.memberSubmission();
+              // call next stage after submission
             }}
           >
             <div className="rounded-xl md:w-4/5 mx-auto bg-[#DAE8FC] mt-6 p-4 md:p-5  ">
@@ -285,9 +286,14 @@ function Stage2(props) {
                             type="text"
                             name="fullName"
                             placeholder="Full Name "
-                            onSubmit={(e) => {
+                            onChange={(e) => {
                               e.preventDefault();
-                              props.projectSubmission();
+
+                              props.updateMemberHandler(
+                                index,
+                                e.target.name,
+                                e.target.value
+                              );
                               // call next stage after submission
                             }}
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50"
@@ -298,9 +304,14 @@ function Stage2(props) {
                             type="text"
                             name="emailID"
                             placeholder="Email"
-                            onSubmit={(e) => {
+                            onChange={(e) => {
                               e.preventDefault();
-                              props.projectSubmission();
+
+                              props.updateMemberHandler(
+                                index,
+                                e.target.name,
+                                e.target.value
+                              );
                               // call next stage after submission
                             }}
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50   "
@@ -311,9 +322,14 @@ function Stage2(props) {
                             type="text"
                             name="socialink"
                             placeholder="Social Link "
-                            onSubmit={(e) => {
+                            onChange={(e) => {
                               e.preventDefault();
-                              props.projectSubmission();
+
+                              props.updateMemberHandler(
+                                index,
+                                e.target.name,
+                                e.target.value
+                              );
                               // call next stage after submission
                             }}
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50 "
@@ -468,7 +484,7 @@ function Stage3(props) {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  props.nextStage();
+                  props.otherSubmission();
                 }}
               >
                 <div className=" md:flex md:flex-wrap overflow-hidden">
@@ -476,12 +492,17 @@ function Stage3(props) {
                     <label className=" mb-2 text-lg  ">
                       Social Links of Project (if Any){" "}
                     </label>
-                    {props.socialDetails.map((member, index) => {
+                    {props.socialDetails.map((social, index) => {
                       return (
                         <div key={index}>
                           <input
                             type="text"
                             name="Project Name"
+                            onChange={(e) => {
+                              e.preventDefault();
+                              props.updateSocialHandler(index, e.target.value);
+                              // call next stage after submission
+                            }}
                             placeholder="Mysterious Savanah "
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50  w-4/5 mb-2"
                           />
@@ -560,6 +581,11 @@ function Stage3(props) {
                     <textarea
                       type="text"
                       name="Project Name"
+                      onChange={(e) => {
+                        e.preventDefault();
+                        props.setotherDetails(e.target.value);
+                        // call next stage after submission
+                      }}
                       rows="4"
                       placeholder="Anything we left to ask and you would like it
                       to be included "
@@ -619,6 +645,14 @@ function Stage4(props) {
             </div>
             <div className="flex justify-center text-xl mb-6 m-5 mt-1">
               You’ll soon be notified over email for further details
+            </div>
+            <div className="flex justify-center text-xl mb-6 m-5 mt-1">
+              Return to&nbsp;
+              <div className=" underline ">
+                <Link href="/ " passHref>
+                  Home
+                </Link>
+              </div>
             </div>
             <div className="flex justify-end text-xl mt-6 mb-3">
               <Image src={Email} alt="Hello" />

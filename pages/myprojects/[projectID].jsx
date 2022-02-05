@@ -178,18 +178,15 @@ export default function ProjectPage(props) {
                 </div>
               </div>
             </div>
-            <div className="mt-5">
+            <div className="m-5 grid grid-cols-3  gap-3">
               {Members.map((user, index) => (
-                <div
-                  key={index}
-                  className="flex container-flex flex-wrap justify-between rounded-t-xl w-full   "
-                >
-                  <div className=" text-[#6A98BF] font-semibold text-2xl ">
-                    <Image src={Profile} alt="Hello" />
-                    <span className="my-auto">{user.name}</span>
-                  </div>
-                  <div className="my-1">
-                    <span className="my-auto">{user.link}</span>
+                <div key={index} className=" justify-between rounded-t-xl ">
+                  <div className="flex flex-col justify-center">
+                    <span className="my-auto mx-auto">{user.name}</span>
+                    <div className="flex flex-wrap justify-center">
+                      <Image src={Profile} alt="Hello" />
+                      <Image src={Profile} alt="Hello" />
+                    </div>
                   </div>
                 </div>
               ))}
