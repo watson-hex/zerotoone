@@ -6,6 +6,7 @@ import Projectcard from "../components/Projectcard";
 import Cardheading from "../public/assets/svg/Cardheading.svg";
 import Search from "../components/Search";
 import Mainlayout, { Cardstoshow } from "../common/Mainlayout";
+import axios from "../utilities/axios";
 
 export default function Home() {
   const theme = useContext(Cardstoshow);
