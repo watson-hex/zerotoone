@@ -18,8 +18,8 @@ import On3 from "../../public/assets/svg/on3.svg";
 function Stage1(props) {
   // Correct! This use of <div> is legitimate because div is a valid HTML tag:
   return (
-    <div className="flex flex-wrap">
-      <div className="w-2/3 ">
+    <div className="md:flex ">
+      <div className="w-full md:w-2/3 ">
         <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-8 ">
           <div>
             <div className="justify-center flex pt-5">
@@ -179,7 +179,7 @@ function Stage1(props) {
           </div>
         </div>
       </div>
-      <div className="w-1/3">
+      <div className="w-full md:w-1/3">
         <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-8  ">
           <div className="flex justify-center mb-4 ">
             <span className="text-4xl">Project Information</span>
@@ -235,8 +235,8 @@ function Stage2(props) {
 
   // Correct! This use of <div> is legitimate because div is a valid HTML tag:
   return (
-    <div className="flex flex-wrap">
-      <div className="w-2/3 ">
+    <div className="md:flex">
+      <div className="w-full md:w-2/3 ">
         <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-8 ">
           <div>
             <div className="justify-center flex pt-5">
@@ -359,7 +359,7 @@ function Stage2(props) {
           </form>
         </div>
       </div>
-      <div className="w-1/3">
+      <div className="w-full md:w-1/3">
         <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-8   ">
           <div className="flex justify-center mb-4 ">
             <span className="text-4xl">Team Information</span>
@@ -410,8 +410,8 @@ function Stage3(props) {
 
   // Correct! This use of <div> is legitimate because div is a valid HTML tag:
   return (
-    <div className="flex flex-wrap">
-      <div className="w-2/3 ">
+    <div className="md:flex">
+      <div className="w-full md:w-2/3 ">
         <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-8 ">
           <div>
             <div className="justify-center flex pt-5">
@@ -529,7 +529,7 @@ function Stage3(props) {
           </div>
         </div>
       </div>
-      <div className="w-1/3">
+      <div className="w-full md:w-1/3">
         <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-8  ">
           <div className="flex justify-center mb-4 ">
             <span className="text-4xl">Our Assurance</span>
@@ -556,11 +556,11 @@ function Stage3(props) {
 function Stage4(props) {
   // Correct! This use of <div> is legitimate because div is a valid HTML tag:
   return (
-    <div>
-      <div className="mx-auto drop-shadow-md rounded-xl bg-white h-full w-3/5 m-10 p-10  pb-0 h-full">
+    <div className="m-3">
+      <div className="mx-auto drop-shadow-md rounded-xl bg-white md:w-3/5 m-10 p-2 pb-0 h-full">
         <div>
-          <div className="flex flex-col justify-items-center">
-            <div className="flex justify-center text-5xl m-5 mt-0 ">
+          <div className="flex flex-col justify-center">
+            <div className="flex justify-center text-3xl m-5 mt-0 ">
               Submitted Succesfully
             </div>
             <div className="flex justify-center m-5">
@@ -572,7 +572,7 @@ function Stage4(props) {
             <div className="flex justify-center text-xl mb-6 m-5 mt-1">
               You’ll soon be notified over email for further details
             </div>
-            <div className="flex justify-end text-xl mt-6 mb-10">
+            <div className="flex justify-end text-xl mt-6 mb-3">
               <Image src={Email} alt="Hello" />
               ecell@iiitd.ac.in
             </div>
