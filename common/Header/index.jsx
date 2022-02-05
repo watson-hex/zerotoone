@@ -15,7 +15,7 @@ export default function Header(props) {
   };
 
   return (
-    <nav className="bg-sky-50 z-50  flex items-center flex-wrap bg-white p-3 rounded-b-3xl drop-shadow-md ">
+    <nav className="bg-sky-50 z-50 flex items-center flex-wrap bg-white p-3 rounded-b-3xl drop-shadow-md ">
       <Link href="/">
         <a className="inline-flex items-center mr-4 ">
           <Image src={Logo} alt="Hello" />
@@ -58,41 +58,14 @@ export default function Header(props) {
             <input
               onChange={(event) => props.handleSearch(event)}
               placeholder="Search projects"
-              className=" indent-4 font-semibold border-2 rounded-lg hover:text-lg focus:text-lg"
+              className=" indent-4 font-semibold border-2 rounded-lg hover:text-lg focus:text-lg h-10 w-max "
               style={{
-                height: "3vw",
-                width: "40vw",
                 borderColor: "#F3F8FF",
                 backgroundColor: "#F3F8FF",
                 color: "#9D9D9D",
               }}
               title="Search bar"
             />
-
-            <button
-              type="submit"
-              onClick={() => {
-                console.log("hello");
-              }}
-              form="form1"
-              value="Submit"
-              className="absolute top-2 right-3"
-            >
-              <svg
-                width="30"
-                height="20"
-                viewBox="0 0 36 37"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M17.3013 0C26.841 0 34.6007 7.75972 34.6007 17.2995C34.6007 21.8003 32.8735 25.9053 30.047 28.9861L35.6087 34.5363C36.1292 35.0568 36.131 35.8988 35.6105 36.4193C35.3511 36.6823 35.0083 36.8119 34.6672 36.8119C34.3279 36.8119 33.9868 36.6823 33.7256 36.4229L28.0968 30.8097C25.1357 33.181 21.3813 34.6007 17.3013 34.6007C7.7615 34.6007 0 26.8393 0 17.2995C0 7.75972 7.7615 0 17.3013 0ZM17.3013 2.66474C9.23065 2.66474 2.66474 9.22888 2.66474 17.2995C2.66474 25.3701 9.23065 31.936 17.3013 31.936C25.3701 31.936 31.936 25.3701 31.936 17.2995C31.936 9.22888 25.3701 2.66474 17.3013 2.66474Z"
-                  fill="#0044A3"
-                />
-              </svg>
-            </button>
           </form>
         </div>
         <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">

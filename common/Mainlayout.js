@@ -48,7 +48,7 @@ export default function Mainlayout({ children }) {
 
   return (
     <div className="h-screen bg-sky-50">
-      <header className="">
+      <header className="z-50">
         <Header handleSearch={handleSearch} />
       </header>
       <main className="h-full bg-sky-50">
@@ -56,7 +56,7 @@ export default function Mainlayout({ children }) {
           <main>{children}</main>
         </Cardstoshow.Provider>
       </main>
-      <footer className="h-10bg-sky-50">Footer</footer>
+      {/* <footer className="h-10bg-sky-50">Footer</footer> */}
     </div>
   );
 }
