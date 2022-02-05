@@ -7,6 +7,7 @@ import Calendar from "../../public/assets/svg/calendar.svg";
 import MainArrow from "../../public/assets/svg/mainArrow.svg";
 import Social from "../../public/assets/svg/social.svg";
 import Link from "next/link";
+import Router from "next/router";
 
 import Tag from "../../common/Tag";
 import Arrow from "../../public/assets/svg/arrow.svg";
@@ -25,7 +26,10 @@ export default function ProjectPage(props) {
 
   return (
     <div>
-      <div className="  justify-start mx-10 w-2/3 mt-2">
+      <div
+        className="  justify-start mx-10 w-2/3 mt-2"
+        onClick={() => Router.back()}
+      >
         <Image src={MainArrow} alt="Hello" />
       </div>
       <div className=" md:w-5/6 mx-3 md:mx-auto md:flex md:flex-wrap ">

@@ -7,6 +7,7 @@ import Calendar from "../../public/assets/svg/calendar.svg";
 import MainArrow from "../../public/assets/svg/mainArrow.svg";
 import Social from "../../public/assets/svg/social.svg";
 import Link from "next/link";
+import Router from "next/router";
 
 import Tag from "../../common/Tag";
 import Arrow from "../../public/assets/svg/arrow.svg";
@@ -14,7 +15,11 @@ import Arrow from "../../public/assets/svg/arrow.svg";
 import Image from "next/image";
 
 export default function ProjectPage(props) {
+  const [showModal, setShowModal] = React.useState(false);
+  const [modalDetail, setmodalDetail] = React.useState("");
+
   const [Tags, setTags] = useState(["project", "machinelearning"]);
+
   const [Members, setMembers] = useState([
     { name: "Yashwardhan", link: "atom" },
     { name: "Yashwardhan", link: "atom" },
@@ -25,7 +30,66 @@ export default function ProjectPage(props) {
 
   return (
     <div>
-      <div className="  justify-start mx-10 w-2/3 mt-2">
+      {showModal ? (
+        <>
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none m-3">
+            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                  <h3 className="text-3xl font-semibold">
+                    Editing {modalDetail}
+                  </h3>
+                  <button
+                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    onClick={() => {
+                      setShowModal(false);
+                    }}
+                  >
+                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                      ×
+                    </span>
+                  </button>
+                </div>
+                {/*body*/}
+                <div className="relative p-6 flex-auto">
+                  <div className="flex items-center border-b border-[#538EE1] py-2">
+                    <input
+                      className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                      type="text"
+                      placeholder="input here"
+                      aria-label="Full name"
+                    />
+                  </div>
+                </div>
+                {/*footer*/}
+                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </button>
+                  <button
+                    className="bg-[#538EE1]/[0.8] text-white active:bg-[#538EE1] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+      <div
+        className="  justify-start mx-10 w-2/3 mt-2"
+        onClick={() => Router.back()}
+      >
         <Image src={MainArrow} alt="Hello" />
       </div>
       <div className=" md:w-5/6 mx-3 md:mx-auto md:flex md:flex-wrap ">
@@ -35,7 +99,14 @@ export default function ProjectPage(props) {
               <div className=" my-3 text-white font-semibold text-4xl ">
                 Project Name
               </div>
-              <div className="my-3">
+              <div
+                className="my-3"
+                onClick={() => {
+                  setShowModal(true);
+
+                  setmodalDetail("Project Name");
+                }}
+              >
                 <Image src={Pencil} alt="Hello" />
               </div>
             </div>
@@ -50,7 +121,13 @@ export default function ProjectPage(props) {
                     <div className="my-auto text-[#6A98BF] font-semibold text-2xl pl-2 ">
                       Description
                     </div>
-                    <div className="my-1">
+                    <div
+                      className="my-1"
+                      onClick={() => {
+                        setShowModal(true);
+                        setmodalDetail("Description");
+                      }}
+                    >
                       <Image src={PencilBlue} alt="Hello" />
                     </div>
                   </div>
@@ -78,7 +155,13 @@ export default function ProjectPage(props) {
                   <div className=" text-[#6A98BF] font-semibold text-2xl ">
                     Tags
                   </div>
-                  <div className="my-1">
+                  <div
+                    className="my-1"
+                    onClick={() => {
+                      setShowModal(true);
+                      setmodalDetail("Tags");
+                    }}
+                  >
                     <Image src={PencilBlue} alt="Hello" />
                   </div>
                 </div>
@@ -97,7 +180,13 @@ export default function ProjectPage(props) {
                     <div className=" text-[#6A98BF] font-semibold text-2xl ">
                       Updates
                     </div>
-                    <div className="my-1">
+                    <div
+                      className="my-1"
+                      onClick={() => {
+                        setShowModal(true);
+                        setmodalDetail("Updates");
+                      }}
+                    >
                       <Image src={PencilBlue} alt="Hello" />
                     </div>
                   </div>
@@ -125,7 +214,13 @@ export default function ProjectPage(props) {
               <div className=" text-[#6A98BF] font-semibold text-2xl ">
                 Timings and Socials
               </div>
-              <div className="my-1">
+              <div
+                className="my-1"
+                onClick={() => {
+                  setShowModal(true);
+                  setmodalDetail("Timings and Socials");
+                }}
+              >
                 <Image src={PencilBlue} alt="Hello" />
               </div>
             </div>
@@ -169,11 +264,17 @@ export default function ProjectPage(props) {
           {" "}
           <div className=" drop-shadow-md rounded-xl bg-white p-4 ">
             <div className="">
-              <div className="flex container-flex flex-wrap justify-between rounded-t-xl w-full   ">
+              <div className="flex container-flex flex-wrap justify-between rounded-t-xl w-full">
                 <div className=" text-[#6A98BF] font-semibold text-2xl ">
                   Members
                 </div>
-                <div className="my-1">
+                <div
+                  className="my-1"
+                  onClick={(e) => {
+                    setShowModal(true);
+                    setmodalDetail("Members");
+                  }}
+                >
                   <Image src={PencilBlue} alt="Hello" />
                 </div>
               </div>
