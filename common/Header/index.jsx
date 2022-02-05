@@ -15,11 +15,11 @@ export default function Header(props) {
   };
 
   return (
-    <nav className="bg-sky-50 z-50 flex items-center flex-wrap bg-white p-3 rounded-b-3xl drop-shadow-md ">
+    <nav className="z-50 flex items-center flex-wrap bg-white p-3 rounded-b-3xl drop-shadow-md ">
       <Link href="/">
-        <a className="inline-flex items-center mr-4 ">
+        <a className="inline-flex items-center">
           <Image src={Logo} alt="Hello" />
-          <span className=" text-indigo-800 text-3xl font-bold pl-2 tracking-wide">
+          <span className="text-indigo-800 text-3xl font-bold md:ml-5 tracking-wide">
             Zero2One
           </span>
         </a>
@@ -46,28 +46,21 @@ export default function Header(props) {
       <div
         className={`${
           active ? "" : "hidden"
-        }   w-full lg:inline-flex lg:flex-grow lg:w-auto`}
+        }   w-full md:inline-flex md:flex-grow md:w-auto`}
       >
-        <div>
-          <form
-            noValidate
-            action=""
-            role="search"
-            className="mx-auto relative "
-          >
-            <input
-              onChange={(event) => props.handleSearch(event)}
-              placeholder="Search projects"
-              className=" indent-4 font-semibold border-2 rounded-lg hover:text-lg focus:text-lg h-10 w-max "
-              style={{
-                borderColor: "#F3F8FF",
-                backgroundColor: "#F3F8FF",
-                color: "#9D9D9D",
-              }}
-              title="Search bar"
-            />
-          </form>
-        </div>
+        <form noValidate action="" role="search" className="mx-auto ">
+          <input
+            onChange={(event) => props.handleSearch(event)}
+            placeholder="Search projects"
+            className=" indent-2 font-semibold border-2 rounded-lg hover:text-lg focus:text-lg h-12 my-2  md:w-[48rem] w-[20rem]  "
+            style={{
+              borderColor: "#F3F8FF",
+              backgroundColor: "#F3F8FF",
+              color: "#9D9D9D",
+            }}
+            title="Search bar"
+          />
+        </form>
         <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
           <Link href="/registeration">
             <a className=" text-indigo-800 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:text-xl ">
@@ -95,7 +88,7 @@ export default function Header(props) {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="  origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
+              <Menu.Items className=" origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
                 <div className="py-1 z-50">
                   <Menu.Item>
                     {({ active }) => (
