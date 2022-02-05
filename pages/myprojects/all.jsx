@@ -23,7 +23,7 @@ export default function Home() {
       <main className=" flex  h-max ">
         <div className=" w-full m-6 h-max">
           <div>
-            <Search filteredData={theme} itemsPerPage={9} />
+            <Search filteredData={theme} itemsPerPage={9}  />
           </div>
         </div>
       </main>

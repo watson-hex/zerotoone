@@ -4,8 +4,11 @@ import Projectcard from "../Projectcard";
 import ReactDOM from "react-dom";
 import ReactPaginate from "react-paginate";
 function Items(props) {
+  const gridSize =
+    props.itemsPerPage === 9 ? "md:grid-cols-3" : "md:grid-cols-2";
+
   return (
-    <div className="md:grid grid-cols-3 gap-3">
+    <div className={"md:grid gap-2 " + gridSize}>
       {props.currentItems &&
         props.currentItems.map((value, index) => {
           return (
@@ -54,7 +57,7 @@ export default function Search(props) {
 
   return (
     <>
-      <Items currentItems={currentItems} />
+      <Items currentItems={currentItems} itemsPerPage={props.itemsPerPage} />
       <div className="flex justify-center">
         <ReactPaginate
           onPageChange={handlePageClick}
