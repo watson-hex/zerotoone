@@ -54,25 +54,21 @@ export default function Search(props) {
 
   return (
     <>
-      <div>
+      <div className="flex justify-center">
         <ReactPaginate
-          nextLabel="next >"
           onPageChange={handlePageClick}
           pageRangeDisplayed={3}
           marginPagesDisplayed={2}
           pageCount={pageCount}
-          previousLabel="< previous"
-          pageClassName="z-10 bg-indigo-50 border-blue-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-          pageLinkClassName="page-link"
-          previousClassName="rounded-full bg-white hover:bg-gray-200 w-max"
-          previousLinkClassName="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-          nextClassName="rounded-full bg-white hover:bg-gray-200 w-max"
-          nextLinkClassName="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-          breakLabel="..."
-          breakClassName="z-10 bg-indigo-50 border-blue-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-          breakLinkClassName="page-link "
-          containerClassName="pagination flex flex-nowrap mb-6 "
-          activeClassName="active"
+          previousLabel="<"
+          previousLinkClassName="flex items-center justify-center w-3 h-10 text-indigo-600 transition-colors duration-150 rounded-full focus:shadow-outline hover:bg-indigo-100"
+          nextLabel=">"
+          nextLinkClassName="flex items-center justify-center w-3 h-10 text-indigo-600 transition-colors duration-150 rounded-full focus:shadow-outline hover:bg-indigo-100"
+          pageClassName=""
+          pageLinkClassName="flex items-center justify-center w-3 h-10 text-indigo-600 transition-colors duration-150 rounded-full focus:shadow-outline hover:bg-indigo-100"
+          breakClassName="hidden"
+          containerClassName=" inline-flex space-x-3  "
+          activeClassName="w-4 h-10 text-white transition-colors duration-150 bg-white border border-r-0 border-blue-600 rounded-full focus:shadow-outline"
           renderOnZeroPageCount={null}
         />
       </div>
