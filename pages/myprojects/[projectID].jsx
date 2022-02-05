@@ -5,6 +5,8 @@ import PencilBlue from "../../public/assets/svg/pencilBlue.svg";
 import Profile from "../../public/assets/svg/profile.svg";
 import Calendar from "../../public/assets/svg/calendar.svg";
 import MainArrow from "../../public/assets/svg/mainArrow.svg";
+import Social from "../../public/assets/svg/social.svg";
+import Link from "next/link";
 
 import Tag from "../../common/Tag";
 import Arrow from "../../public/assets/svg/arrow.svg";
@@ -12,8 +14,10 @@ import Arrow from "../../public/assets/svg/arrow.svg";
 import Image from "next/image";
 
 export default function ProjectPage(props) {
-  const [Tags, setTags] = useState(["project", "machinelearning", "CSE", "ml"]);
+  const [Tags, setTags] = useState(["project", "machinelearning"]);
   const [Members, setMembers] = useState([
+    { name: "Yashwardhan", link: "atom" },
+    { name: "Yashwardhan", link: "atom" },
     { name: "Yashwardhan", link: "atom" },
     { name: "Yashwardhan", link: "atom" },
     { name: "Yashwardhan", link: "atom" },
@@ -57,12 +61,12 @@ export default function ProjectPage(props) {
                     the 1500s, when an unknown printer took a galley of type and
                     scrambled it to make a type specimen book.{" "}
                   </p>
-                  <div className="flex  flex-wrap justify-between mt-4  rounded-t-xl w-full  ">
+                  <div className="flex  flex-wrap justify-around mt-4   rounded-t-xl w-full  ">
                     <div className="my-auto  text-[#6A98BF] font-semibold">
                       <Tag text={"Ongoing"} />
                     </div>
-                    <div className="my-1">
-                      <Image src={Arrow} alt="Hello" />
+                    <div className="my-auto   text-[#6A98BF] font-semibold">
+                      <Tag text={"Collaborating"} />
                     </div>
                   </div>
                 </div>
@@ -78,12 +82,10 @@ export default function ProjectPage(props) {
                     <Image src={PencilBlue} alt="Hello" />
                   </div>
                 </div>
-                <p className="text-lg container text-[#6A98BF] ">
+                <p className="text-lg flex flex-wrap text-[#6A98BF] container ">
                   {" "}
                   {Tags.map((user, index) => (
-                    <div key={index} className="user">
-                      #{user}
-                    </div>
+                    <span key={index}>#{user}</span>
                   ))}
                 </p>
               </div>
@@ -105,12 +107,12 @@ export default function ProjectPage(props) {
                     typesetting industry. Lorem Ipsum has been the industry
                     Lorem Ipsum is simply dummy text of the printing and
                   </p>
-                  <div className="flex  flex-wrap justify-between mt-4  rounded-t-xl w-full  ">
+                  {/* <div className="flex  flex-wrap justify-between mt-4  rounded-t-xl w-full  ">
                     <div className="my-auto  text-[#6A98BF] font-semibold"></div>
                     <div className="my-1">
                       <Image src={Arrow} alt="Hello" />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -121,7 +123,7 @@ export default function ProjectPage(props) {
           <div className=" drop-shadow-md rounded-xl bg-white p-4">
             <div className="flex container-flex flex-wrap justify-between rounded-t-xl w-full   ">
               <div className=" text-[#6A98BF] font-semibold text-2xl ">
-                Tentative Timings
+                Timings and Socials
               </div>
               <div className="my-1">
                 <Image src={PencilBlue} alt="Hello" />
@@ -133,36 +135,31 @@ export default function ProjectPage(props) {
                   <div className="">
                     <Image src={Calendar} alt="Hello" />
                     <span className="text-lg">Started On:</span>
+                    <span className="my-auto text-lg text-black">
+                      {/* {props.data} */}
+                      11-11-22
+                    </span>
                   </div>
-                  <span className="my-auto text-lg text-black">
-                    {/* {props.data} */}
-                    11-11-22
-                  </span>
                 </div>
                 <div className=" flex flex-col text-[#6A98BF] font-semibold ">
-                  <div className="my-auto text-lg">
-                    Tentative Completion In:
-                  </div>
-                  <div className="my-auto text-lg text-black">
+                  <span className="my-auto text-lg">
+                    Tentative Completion in:
+                  </span>
+                  <span className="my-auto  text-lg text-black">
                     {/* {props.data} */}3 months
-                  </div>
+                  </span>
                 </div>
               </div>
             </div>
             <div>
               <div className="flex mt-12 flex-wrap justify-center rounded-t-xl ">
-                <div className="ml-4 mr-4">
-                  {" "}
-                  <Image src={Profile} alt="Hello" />
-                </div>
-                <div className="ml-4 mr-4">
-                  {" "}
-                  <Image src={Profile} alt="Hello" />
-                </div>
-                <div className="ml-4 mr-4">
-                  {" "}
-                  <Image src={Profile} alt="Hello" />
-                </div>
+                {Members.map((user, index) => (
+                  <div key={index} className="flex flex-wrap px-2 ">
+                    <Link href={user.link} passHref>
+                      <Image src={Social} alt="Hello" />
+                    </Link>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -197,12 +194,12 @@ export default function ProjectPage(props) {
                 </div>
               ))}
             </div>
-            <div className="flex  flex-wrap justify-between mt-0 rounded-t-xl w-full  ">
+            {/* <div className="flex  flex-wrap justify-between mt-0 rounded-t-xl w-full  ">
               <div className="my-auto  text-[#6A98BF] font-semibold"></div>
               <div className="my-1">
                 <Image src={Arrow} alt="Hello" />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
