@@ -22,7 +22,7 @@ export default function BookmarkButton(props) {
   return (
     <div>
       {" "}
-      <div className="grid justify-items-end ">
+      <div className="flex justify-end  ">
         <button
           className=""
           onClick={() => {

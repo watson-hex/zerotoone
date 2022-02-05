@@ -21,33 +21,29 @@ export default function ProjectPage(props) {
 
   return (
     <div>
-      <div className=" flex justify-start mx-10 w-2/3 mt-2">
+      <div className="  justify-start mx-10 w-2/3 mt-2">
         <Image src={MainArrow} alt="Hello" />
       </div>
-      <div className="w-5/6 mx-auto flex flex-wrap ">
-        <div className="w-1/2 min-w-1/2 pb-5">
-          <div className=" drop-shadow-md rounded-xl bg-white  bg-[url('/assets/svg/projectprofile.svg')]  h-full">
-            <div className="">
-              <div className=" ">
-                <div className="flex container flex-wrap justify-between pl-5 pr-5 bg-[#538EE1]/[0.8]  rounded-t-xl w-full  ">
-                  <div className=" my-3 text-white font-semibold text-4xl ">
-                    Project Name
-                  </div>
-                  <div className="my-3">
-                    <Image src={Pencil} alt="Hello" />
-                  </div>
-                </div>
+      <div className=" md:w-5/6 mx-3 md:mx-auto md:flex md:flex-wrap ">
+        <div className="md:w-1/2 md:min-w-1/2 pb-5">
+          <div className="drop-shadow-md rounded-xl bg-white bg-[url('/assets/svg/projectprofile.svg')]  h-full">
+            <div className="flex container flex-wrap justify-between pl-5 pr-5 bg-[#538EE1]/[0.8]  rounded-t-xl w-full  ">
+              <div className=" my-3 text-white font-semibold text-4xl ">
+                Project Name
+              </div>
+              <div className="my-3">
+                <Image src={Pencil} alt="Hello" />
               </div>
             </div>
           </div>
         </div>
-        <div className="w-1/2 min-w-1/2">
+        <div className="md:mx-0 md:w-1/2 min-w-1/2">
           <div className="flex flex-wrap">
-            <div className=" ml-5 mr-0 mt-0 mb-7  mr-0 ">
-              <div className=" drop-shadow-md rounded-xl bg-white p-4">
+            <div className=" md:ml-5 md:mr-0 md:mt-0 md:mb-7 md:mr-0 ">
+              <div className=" drop-shadow-md rounded-xl bg-white p-2">
                 <div className="">
                   <div className="flex container-flex flex-wrap justify-between   rounded-t-xl w-full  ">
-                    <div className="my-auto  text-[#6A98BF] font-semibold text-2xl ">
+                    <div className="my-auto text-[#6A98BF] font-semibold text-2xl pl-2 ">
                       Description
                     </div>
                     <div className="my-1">
@@ -72,29 +68,27 @@ export default function ProjectPage(props) {
                 </div>
               </div>
             </div>
-            <div className=" w-1/3 h-max p-5 pt-0">
+            <div className="w-full md:w-1/3 h-max md:px-5 my-2 md:my-0 pt-0">
               <div className=" drop-shadow-md rounded-xl bg-white p-4 ">
-                <div className="">
-                  <div className="flex container-flex flex-wrap justify-between rounded-t-xl w-full   ">
-                    <div className=" text-[#6A98BF] font-semibold text-2xl ">
-                      Tags
-                    </div>
-                    <div className="my-1">
-                      <Image src={PencilBlue} alt="Hello" />
-                    </div>
+                <div className="flex container-flex flex-wrap justify-between rounded-t-xl w-full   ">
+                  <div className=" text-[#6A98BF] font-semibold text-2xl ">
+                    Tags
                   </div>
-                  <p className="text-lg container text-[#6A98BF] ">
-                    {" "}
-                    {Tags.map((user, index) => (
-                      <div key={index} className="user">
-                        #{user}
-                      </div>
-                    ))}
-                  </p>
+                  <div className="my-1">
+                    <Image src={PencilBlue} alt="Hello" />
+                  </div>
                 </div>
+                <p className="text-lg container text-[#6A98BF] ">
+                  {" "}
+                  {Tags.map((user, index) => (
+                    <div key={index} className="user">
+                      #{user}
+                    </div>
+                  ))}
+                </p>
               </div>
             </div>
-            <div className="w-2/3 p-5 pr-0 pl-0 pt-0">
+            <div className="w-full md:w-2/3 p-5 pr-0 pl-0 pt-0">
               <div className=" drop-shadow-md rounded-xl bg-white p-4">
                 <div className="">
                   <div className="flex container-flex flex-wrap justify-between rounded-t-xl w-full   ">
@@ -122,7 +116,7 @@ export default function ProjectPage(props) {
             </div>
           </div>
         </div>
-        <div className="w-1/2 min-w-1/2">
+        <div className="w-full md:w-1/2 min-w-1/2">
           {" "}
           <div className=" drop-shadow-md rounded-xl bg-white p-4">
             <div className="flex container-flex flex-wrap justify-between rounded-t-xl w-full   ">
@@ -174,7 +168,7 @@ export default function ProjectPage(props) {
           </div>
         </div>
 
-        <div className="w-1/2 min-w-1/2 p-4 pt-0">
+        <div className="w-full md:w-1/2 min-w-1/2 my-2 md:my-0 md:pl-4 pt-0">
           {" "}
           <div className=" drop-shadow-md rounded-xl bg-white p-4 ">
             <div className="">

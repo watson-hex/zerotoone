@@ -21,16 +21,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className=" md:flex">
-        <div className="  md:w-3/5 ">
-          <div className="m-3 md:m-0">
+      <main className=" md:flex ">
+        <div className="w-full  md:w-3/5 ">
+          <div className="m-3 ">
             <Search filteredData={theme} itemsPerPage={6} />
           </div>
         </div>
 
         {/* the lower part is responsive */}
-        <div className="md:w-2/5 ">
-          <div className="m-3 drop-shadow-md rounded-3xl bg-white p-4">
+        <div className=" flex w-full md:w-2/5 justify-center ">
+          <div className="m-3 drop-shadow-md rounded-3xl bg-white p-4 md:w-5/6">
             <div className="mb-4 flex justify-center ">
               <Image src={Cardheading} alt="Picture of the author" />
             </div>

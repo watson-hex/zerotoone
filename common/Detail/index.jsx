@@ -2,12 +2,12 @@ import React from "react";
 
 export default function Detail(props) {
   return (
-    <div className="flex justify-around">
+    <div className="flex justify-center md:p-1">
       <div>
         {props.v === "m" ? (
           <svg
             width="28"
-            height="25"
+            height="20"
             viewBox="0 0 36 25"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@ export default function Detail(props) {
         ) : (
           <svg
             width="25"
-            height="25"
+            height="20"
             viewBox="0 0 29 25"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ export default function Detail(props) {
           </svg>
         )}
       </div>
-      <div>{props.text}</div>
+      <div className="pl-2"> {props.text}</div>
     </div>
   );
 }

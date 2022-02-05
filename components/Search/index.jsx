@@ -5,12 +5,12 @@ import ReactDOM from "react-dom";
 import ReactPaginate from "react-paginate";
 function Items(props) {
   return (
-    <div className="md:grid grid-cols-2 gap-2">
+    <div className="md:grid grid-cols-3 gap-3">
       {props.currentItems &&
         props.currentItems.map((value, index) => {
           return (
             <>
-              <div key={value.id} className="w-full ">
+              <div key={value.id} className="w-full mr-3 mb-3 md:m-0 ">
                 <Projectcard
                   ID={"Project1"}
                   Pname={"Project Name"}
