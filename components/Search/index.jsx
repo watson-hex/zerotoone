@@ -10,7 +10,7 @@ function Items(props) {
         props.currentItems.map((value, index) => {
           return (
             <>
-              <div key={value.id}>
+              <div key={value.id} className="w-full ">
                 <Projectcard
                   ID={"Project1"}
                   Pname={"Project Name"}
@@ -54,6 +54,7 @@ export default function Search(props) {
 
   return (
     <>
+      <Items currentItems={currentItems} />
       <div className="flex justify-center">
         <ReactPaginate
           onPageChange={handlePageClick}
@@ -72,7 +73,6 @@ export default function Search(props) {
           renderOnZeroPageCount={null}
         />
       </div>
-      <Items currentItems={currentItems} />
     </>
   );
 }

@@ -21,9 +21,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-wrap">
-        <div className="md:w-3/5 ">
-          <div>
+      <main className=" md:flex">
+        <div className="  md:w-3/5 ">
+          <div className="m-3 md:m-0">
             <Search filteredData={theme} itemsPerPage={6} />
           </div>
         </div>
@@ -35,14 +35,14 @@ export default function Home() {
               <Image src={Cardheading} alt="Picture of the author" />
             </div>
             <div className="">
-              <p className="text-sm md:text-lg">
+              <p className="text-sm md:text-lg md:p-6">
                 ZeroToOne, is a unique community started by IIITD E-Cell, to
                 help students become entrepreneurs. It helps students in forming
                 their idea from the scratch to the next level where they are
                 ready to step into the big leagues.
               </p>
               <br />
-              <p className="text-sm md:text-lg">
+              <p className="text-sm md:text-lg md:p-6">
                 Guidlines and other Information, Lorem Ipsum is simply dummy
                 text of the printing and typesetting industry. Lorem Ipsum has
                 been the industry&apos;s standard dummy text ever since the
