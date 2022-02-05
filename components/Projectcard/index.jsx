@@ -6,16 +6,18 @@ import BookmarkButton from "../../common/Bookmark";
 import Boldbookmark from "../../public/assets/svg/Boldbookmark.svg";
 import Bookmark from "../../public/assets/svg/bookmark.svg";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Projectcard(props) {
+  const router = useRouter();
+  var href =
+    router.asPath === "/myprojects/all" ? "/myprojects/" : "/projects/";
+  href = href + props.ID + "_" + props.Pname.replace(/ /g, "");
   return (
     <div id={props.ID} className="drop-shadow-md">
       <div className=" flex rounded-xl bg-white p-2 w-max">
         <div className="flex-initial bg-white rounded-lg w-64 ">
-          <Link
-            href={"/projects/" + props.ID + "_" + props.Pname.replace(/ /g, "")}
-            passHref
-          >
+          <Link href={href} passHref>
             <div
               className="h-44 m-2 rounded-xl text-white relative "
               style={{ backgroundColor: "#6A98BF" }}

@@ -47,14 +47,14 @@ function Stage1(props) {
                         );
                       }}
                       placeholder="Mysterious Savanah "
-                      className="text-xl indent-4 rounded-xl shadow-inner outline-2 outline-slate-50  w-4/5"
+                      className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50  w-4/5"
                     />
                   </div>
 
                   <div className="flex flex-col w-1/2 mb-4 ">
                     <label className=" mb-2 text-xl ">Project Stage</label>
                     <select
-                      className="text-xl indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                      className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
                       name="stage"
                       onChange={(e) => {
                         props.updateProjectHandler(
@@ -84,12 +84,12 @@ function Stage1(props) {
                       }}
                       rows="4"
                       placeholder="Mysterious Savanah "
-                      className="text-xl indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                      className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
                     />
                   </div>
-                  <div className="flex flex-col w-1/2 mt-4 mb-4">
+                  <div className="flex flex-col w-1/2 mt-6 mb-4">
                     <div>
-                      <div className="mb-6">
+                      <div className="mb-8">
                         <label className=" mb-2 text-xl ">Started On ?</label>
                         <input
                           type="text"
@@ -134,8 +134,8 @@ function Stage1(props) {
                           e.target.value
                         );
                       }}
-                      placeholder="Mysterious Savanah "
-                      className="text-xl indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                      placeholder="Innovation, heroku, tech  "
+                      className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
                     />
                   </div>
 
@@ -249,11 +249,11 @@ function Stage2(props) {
               props.nextStage();
             }}
           >
-            <div className="rounded-xl w-4/5 mx-auto bg-[#DAE8FC] mt-6 ">
+            <div className="rounded-xl w-4/5 mx-auto bg-[#DAE8FC] mt-6  ">
               <div className="flex flex-col p-8 pb-4 h-96">
                 {props.membersDetails.map((member, index) => {
                   return (
-                    <div key={index}>
+                    <div key={index} className="mt-2 mb-2">
                       <div className="flex flex-wrap justify-between">
                         <div className="text-2xl">Member {index} details</div>
                       </div>
@@ -291,8 +291,8 @@ function Stage2(props) {
                   {props.membersDetails.length < 5 ? (
                     <div onClick={addMember}>
                       <svg
-                        width="26"
-                        height="55"
+                        width="23"
+                        height="48"
                         viewBox="0 0 46 55"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -305,22 +305,37 @@ function Stage2(props) {
                     </div>
                   ) : (
                     <div>
-                      Cannot Add More than {props.membersDetails.length} Members
+                      Can't add more than {props.membersDetails.length} members
                     </div>
                   )}
 
-                  <div
-                    type="submit"
-                    className="text-gray-700 text-sm font-bold py-2 rounded"
-                    onClick={(e) => {
-                      removeMember();
-                    }}
-                  >
-                    delete
-                  </div>
+                  {props.membersDetails.length > 1 ? (
+                    <div
+                      type="submit"
+                      className="text-gray-700 text-sm font-bold py-2 rounded pl-2"
+                      onClick={(e) => {
+                        removeMember();
+                      }}
+                    >
+                      <svg
+                        width="25"
+                        height="31"
+                        viewBox="0 0 37 41"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M32.3096 14.362C32.7084 14.362 33.0702 14.536 33.3561 14.83C33.6226 15.144 33.7568 15.534 33.7179 15.946C33.7179 16.082 32.652 29.5619 32.0432 35.2358C31.6619 38.7178 29.4173 40.8318 26.0503 40.8898C23.4614 40.9478 20.9308 40.9678 18.4391 40.9678C15.7938 40.9678 13.2068 40.9478 10.6956 40.8898C7.44148 40.8118 5.19489 38.6598 4.8331 35.2358C4.20677 29.5419 3.16031 16.082 3.14086 15.946C3.1214 15.534 3.25367 15.144 3.5221 14.83C3.78663 14.536 4.16787 14.362 4.56856 14.362H32.3096ZM22.561 0.967773C24.3291 0.967773 25.9085 2.20176 26.3656 3.96174L26.6924 5.42173C26.9569 6.61172 27.9878 7.45371 29.1743 7.45371H35.0058C35.7838 7.45371 36.4315 8.0997 36.4315 8.92169V9.68169C36.4315 10.4837 35.7838 11.1497 35.0058 11.1497H1.85923C1.07924 11.1497 0.431519 10.4837 0.431519 9.68169V8.92169C0.431519 8.0997 1.07924 7.45371 1.85923 7.45371H7.69065C8.87522 7.45371 9.90612 6.61172 10.1726 5.42373L10.478 4.05974C10.9526 2.20176 12.5145 0.967773 14.3021 0.967773H22.561Z"
+                          fill="black"
+                        />
+                      </svg>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
                 </div>
               </div>
-              <div className="flex flex-col relative w-1/2 mt-4 mb-4">
+              <div className="flex flex-col relative w-1/2 mt-4 mb-4 ml-6">
                 <label className="flex absolute items-center cursor-pointer">
                   <div className="relative">
                     <input type="checkbox" id="toggleB" className="sr-only" />
@@ -332,7 +347,7 @@ function Stage2(props) {
                   </div>
                 </label>
               </div>
-              <div className="justify-center flex pt-9">
+              <div className="justify-center flex pt-9 pb-8">
                 <button
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-4 rounded w-1/4"
@@ -370,12 +385,26 @@ function Stage2(props) {
 
 function Stage3(props) {
   //Making a social Links array using usestate
-  const [SocialLinks, setSocialLinks] = useState([]);
 
+  // function addSocial() {
+  //   // update Social Links with new member
+  //   if (SocialLinks.length < 5) {
+  //     setSocialLinks([...SocialLinks, ""]);
+  //   }
+  // }
   function addSocial() {
-    // update Social Links with new member
-    if (SocialLinks.length < 5) {
-      setSocialLinks([...SocialLinks, ""]);
+    // update memberlist with new member
+    if (props.socialDetails.length < 5) {
+      props.setsocialDetails([...props.socialDetails, ""]);
+    }
+  }
+
+  function removeSocial() {
+    console.log();
+
+    // remove last member from list
+    if (props.socialDetails.length > 1) {
+      props.setsocialDetails(props.socialDetails.slice(0, -1));
     }
   }
 
@@ -398,11 +427,11 @@ function Stage3(props) {
                 }}
               >
                 <div className=" ml-14 flex flex-wrap overflow-hidden">
-                  <div className="flex flex-col  w-1/2">
+                  <div className="flex flex-col w-1/2">
                     <label className=" mb-2 text-xl  ">
                       Social Links of Project (if Any){" "}
                     </label>
-                    {SocialLinks.map((member, index) => {
+                    {props.socialDetails.map((member, index) => {
                       return (
                         <div key={index}>
                           <input
@@ -415,11 +444,11 @@ function Stage3(props) {
                       );
                     })}
 
-                    {SocialLinks.length < 5 ? (
+                    {props.socialDetails.length < 5 ? (
                       <div className="flex justify-end">
                         <div onClick={addSocial}>
                           <svg
-                            width="26"
+                            width="25"
                             height="55"
                             viewBox="0 0 46 55"
                             fill="none"
@@ -434,8 +463,29 @@ function Stage3(props) {
                       </div>
                     ) : (
                       <div>
-                        Cannot Add More than {SocialLinks.length} Members
+                        Cannot Add More than {props.socialDetails.length} Links
                       </div>
+                    )}
+
+                    {props.socialDetails.length > 1 ? (
+                      <div className="flex justify-end">
+                        <div onClick={removeSocial}>
+                          <svg
+                            width="25"
+                            height="31"
+                            viewBox="0 0 37 41"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M32.3096 14.362C32.7084 14.362 33.0702 14.536 33.3561 14.83C33.6226 15.144 33.7568 15.534 33.7179 15.946C33.7179 16.082 32.652 29.5619 32.0432 35.2358C31.6619 38.7178 29.4173 40.8318 26.0503 40.8898C23.4614 40.9478 20.9308 40.9678 18.4391 40.9678C15.7938 40.9678 13.2068 40.9478 10.6956 40.8898C7.44148 40.8118 5.19489 38.6598 4.8331 35.2358C4.20677 29.5419 3.16031 16.082 3.14086 15.946C3.1214 15.534 3.25367 15.144 3.5221 14.83C3.78663 14.536 4.16787 14.362 4.56856 14.362H32.3096ZM22.561 0.967773C24.3291 0.967773 25.9085 2.20176 26.3656 3.96174L26.6924 5.42173C26.9569 6.61172 27.9878 7.45371 29.1743 7.45371H35.0058C35.7838 7.45371 36.4315 8.0997 36.4315 8.92169V9.68169C36.4315 10.4837 35.7838 11.1497 35.0058 11.1497H1.85923C1.07924 11.1497 0.431519 10.4837 0.431519 9.68169V8.92169C0.431519 8.0997 1.07924 7.45371 1.85923 7.45371H7.69065C8.87522 7.45371 9.90612 6.61172 10.1726 5.42373L10.478 4.05974C10.9526 2.20176 12.5145 0.967773 14.3021 0.967773H22.561Z"
+                              fill="black"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    ) : (
+                      <div></div>
                     )}
                   </div>
 
@@ -463,14 +513,15 @@ function Stage3(props) {
                       type="text"
                       name="Project Name"
                       rows="4"
-                      placeholder="Mysterious Savanah "
-                      className="text-xl indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                      placeholder="Anything we left to ask and you would like it
+                      to be included "
+                      className="text-lg pl-3 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
                     />
                   </div>
                 </div>
                 <div className="justify-center flex pt-5">
                   <button className="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-4 rounded w-1/4">
-                    Next
+                    Submit
                   </button>
                 </div>
               </form>

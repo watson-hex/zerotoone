@@ -32,6 +32,8 @@ export default function Registeration() {
       socialink: "Social link",
     },
   ]);
+
+  const [socialDetails, setsocialDetails] = useState([""]);
   const [otherDetails, setotherDetails] = useState({
     otherInfo: "",
   });
@@ -71,6 +73,8 @@ export default function Registeration() {
         <Stage3
           otherDetails={otherDetails}
           setotherDetails={setotherDetails}
+          socialDetails={socialDetails}
+          setsocialDetails={setsocialDetails}
           nextStage={nextStage}
         />
       ) : Stage === 3 ? (

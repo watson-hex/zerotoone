@@ -101,7 +101,7 @@ export default function Header(props) {
               Add Project
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/myprojects/all">
             <a className="text-indigo-800 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:text-xl">
               My Projects
             </a>

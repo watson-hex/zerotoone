@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // components/layout.js
 import axios from "axios";
-
+import { useRouter } from "next/router";
 import Header from "./Header";
 import Footer from "./Footer";
 export const Cardstoshow = React.createContext(null);
@@ -19,17 +19,31 @@ export default function Mainlayout({ children }) {
     });
     setFilteredData(result);
   };
+  const router = useRouter();
+  console.log(router.asPath);
 
   useEffect(() => {
-    axios("https://jsonplaceholder.typicode.com/albums/1/photos")
-      .then((response) => {
-        console.log(response.data);
-        setAllData(response.data);
-        setFilteredData(response.data);
-      })
-      .catch((error) => {
-        console.log("Error getting fake data: " + error);
-      });
+    if (router.asPath === "/myprojects/all") {
+      axios("https://jsonplaceholder.typicode.com/albums/2/photos")
+        .then((response) => {
+          console.log(response.data);
+          setAllData(response.data);
+          setFilteredData(response.data);
+        })
+        .catch((error) => {
+          console.log("Error getting fake data: " + error);
+        });
+    } else {
+      axios("https://jsonplaceholder.typicode.com/albums/1/photos")
+        .then((response) => {
+          console.log(response.data);
+          setAllData(response.data);
+          setFilteredData(response.data);
+        })
+        .catch((error) => {
+          console.log("Error getting fake data: " + error);
+        });
+    }
   }, []);
 
   return (
