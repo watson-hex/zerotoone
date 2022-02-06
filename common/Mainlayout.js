@@ -58,16 +58,12 @@ export default function Mainlayout({ children, isAuthenticated, setLoggedIn, set
           />
       <div className="h-screen bg-sky-50">
       <header className="z-50">
-        <Header handleSearch={handleSearch} />
-          {!isAuthenticated ?
-              <GoogleSignIn
-                  isAuthenticated={isAuthenticated}
-                  setLoggedIn={setLoggedIn}
-                  setStage={setGoogleState}
-                  stage={googleState}
-                  visibility
-              />
-              : null}
+        <Header handleSearch={handleSearch}
+                isAuthenticated={isAuthenticated}
+                setLoggedIn={setLoggedIn}
+                setStage={setGoogleState}
+                stage={googleState}
+                visibility />
       </header>
       <main className="h-full bg-sky-50">
         <Cardstoshow.Provider value={filteredData}>

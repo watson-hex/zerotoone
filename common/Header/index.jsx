@@ -4,8 +4,16 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { useState } from "react";
+import {Button} from "react-bootstrap";
+import GoogleSignIn from "../../components/GoogleSignIn";
 import Logo from "../../public/assets/svg/logo.svg";
 import Profile from "../../public/assets/svg/profile.svg";
+import {setLoggedOut} from "../../utilities/auth";
+
+function signOut() {
+    setLoggedOut()
+    window.location.href = "/";
+}
 
 export default function Header(props) {
   const [active, setActive] = useState(false);
@@ -77,139 +85,19 @@ export default function Header(props) {
               My Bookmarks
             </a>
           </Link>
-          <Menu as="div" className=" relative inline-block text-left">
-            <div>
-              <Menu.Button className="inline-flex justify-center w-full rounded-md   px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-                <Image src={Profile} alt="Hello" />
-              </Menu.Button>
-            </div>
+          {!props.isAuthenticated ?
+              <GoogleSignIn
+                  isAuthenticated={props.isAuthenticated}
+                  setLoggedIn={props.setLoggedIn}
+                  setStage={props.setStage}
+                  stage={props.stage}
+                  visibility
+              />
+              : <button onClick={signOut} className="text-indigo-800 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:text-xl ">
+                  Sign Out
+              </button>
+          }
 
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
-            >
-              <Menu.Items className=" origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
-                <div className="py-1 z-50">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={
-                          (active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm")
-                        }
-                      >
-                        Edit
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={
-                          (active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm")
-                        }
-                      >
-                        Duplicate
-                      </a>
-                    )}
-                  </Menu.Item>
-                </div>
-                <div className="py-1">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={
-                          (active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm")
-                        }
-                      >
-                        Archive
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={
-                          (active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm")
-                        }
-                      >
-                        Move
-                      </a>
-                    )}
-                  </Menu.Item>
-                </div>
-                <div className="py-1">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={
-                          (active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm")
-                        }
-                      >
-                        Share
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={
-                          (active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm")
-                        }
-                      >
-                        Add to favorites
-                      </a>
-                    )}
-                  </Menu.Item>
-                </div>
-                <div className="py-1">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={
-                          (active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm")
-                        }
-                      >
-                        Delete
-                      </a>
-                    )}
-                  </Menu.Item>
-                </div>
-              </Menu.Items>
-            </Transition>
-          </Menu>
         </div>
       </div>
     </nav>
