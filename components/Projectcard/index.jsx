@@ -12,9 +12,9 @@ export default function Projectcard(props) {
   const router = useRouter();
   var href =
     router.asPath === "/myprojects/all" ? "/myprojects/" : "/projects/";
-  href = href + props.ID + "_" + props.Pname.replace(/ /g, "");
+  href = href + props.element.id;
   return (
-    <div id={props.ID} className="drop-shadow-md overflow-hidden">
+    <div id={props.element.id} className="drop-shadow-md overflow-hidden">
       <div className=" flex rounded-3xl bg-white md:p-2 justify-around">
         <div className="bg-white rounded-2xl w-4/6">
           <Link href={href} passHref>
@@ -23,11 +23,11 @@ export default function Projectcard(props) {
               style={{ backgroundColor: "#6A98BF" }}
             >
               <div className="text-2xl md:text-3xl text-left ml-3 font-semibold absolute inset-x-0 top-2 ">
-                {props.Pname}
+                {props.element.name}
               </div>
               <div className="absolute inset-x-0 bottom-0 m-3 ">
                 <div className="flex justify-start text-sm font-light">
-                  {props.PSdesc}
+                  {props.element.idea}
                 </div>
               </div>
             </div>
@@ -38,16 +38,16 @@ export default function Projectcard(props) {
             className="flex flex-col text-sm justify-end "
             style={{ color: "#6A98BF" }}
           >
-            <BookmarkButton Bookmarked={props.Bookmarked} />
+            <BookmarkButton Bookmarked={props.element.bookmarked} />
 
             <span className="flex justify-center pt-2">
-              <Tag text={props.Status} />
+              <Tag text={props.element.ongoing ? "Collaborating " : "Full"} />
             </span>
             <span className="flex justify-center pt-1">
-              <Tag text={props.Open} />
+              <Tag text={props.element.stage} />
             </span>
             <span className="pt-2">
-              <Detail v="m" text={props.Memberlist} />
+              <Detail v="m" text={props.element.owners.length + " members"} />
             </span>
             <span className="pt-1">
               <Detail v="c" text={"Contact us"} />

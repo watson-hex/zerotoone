@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Projectcard from "../../components/Projectcard";
@@ -7,7 +7,13 @@ import Search from "../../components/Search";
 import Mainlayout, { Cardstoshow } from "../../common/Mainlayout";
 import MainArrow from "../../public/assets/svg/mainArrow.svg";
 import Router from "next/router";
+
+import axios from "../../utilities/axios";
+
 export default function Home() {
+  // useeffect with axios to get data from the server
+  
+
   const theme = useContext(Cardstoshow);
   return (
     <>

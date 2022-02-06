@@ -8,13 +8,22 @@ import MainArrow from "../../public/assets/svg/mainArrow.svg";
 import Social from "../../public/assets/svg/social.svg";
 import Link from "next/link";
 import Router from "next/router";
-
+import { useRouter } from "next/router";
 import Tag from "../../common/Tag";
 import Arrow from "../../public/assets/svg/arrow.svg";
-
+import axios from "../../utilities/axios";
 import Image from "next/image";
 
 export default function ProjectPage(props) {
+  // useeffect function axios calling for data
+
+  const router = useRouter();
+  useEffect(() => {
+    axios.get("/ecell/all/").then((res) => {
+      console.group("hello");
+    });
+  }, []);
+
   const [Tags, setTags] = useState(["project", "machinelearning"]);
   const [Members, setMembers] = useState([
     { name: "Yashwardhan", link: "atom" },

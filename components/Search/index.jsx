@@ -15,13 +15,10 @@ function Items(props) {
             <>
               <div key={value.id} className="w-full mr-3 mb-3 md:m-0 ">
                 <Projectcard
-                  ID={"Project1"}
-                  Pname={"Project Name"}
-                  PSdesc={value.title}
-                  Bookmarked={false}
-                  Status={"Ongoing"}
-                  Open={"Collaborate"}
-                  Memberlist={"3 members"}
+                  element={value}
+                  ID={value.id}
+                  Pname={value.name}
+                  PSdesc={value.idea}
                 />
               </div>
             </>
