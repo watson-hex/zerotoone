@@ -64,7 +64,7 @@ export default function Mainlayout({
           console.log("Error getting fake data: " + error);
         });
     }
-  }, [router.asPath]);
+  }, [router.asPath, isAuthenticated]);
 
   return (
     <LoginContext.Provider value={isAuthenticated}>
