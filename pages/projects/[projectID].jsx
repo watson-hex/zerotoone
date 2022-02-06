@@ -18,6 +18,9 @@ export default function ProjectPage(props) {
   // useeffect function axios calling for data
 
   const router = useRouter();
+
+
+  const projectID = router.query.projectID;
   useEffect(() => {
     axios.get("/ecell/all/").then((res) => {
       console.group("hello");
@@ -33,6 +36,9 @@ export default function ProjectPage(props) {
     { name: "Yashwardhan", link: "atom" },
   ]);
 
+  if (projectID === undefined)
+    return null;
+  console.log("projectID is", projectID);
   return (
     <div>
       <div
