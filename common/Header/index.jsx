@@ -4,15 +4,15 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { useState } from "react";
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import GoogleSignIn from "../../components/GoogleSignIn";
 import Logo from "../../public/assets/svg/logo.svg";
 import Profile from "../../public/assets/svg/profile.svg";
-import {setLoggedOut} from "../../utilities/auth";
+import { setLoggedOut } from "../../utilities/auth";
 
 function signOut() {
-    setLoggedOut()
-    window.location.href = "/";
+  setLoggedOut();
+  window.location.href = "/";
 }
 
 export default function Header(props) {
@@ -60,7 +60,7 @@ export default function Header(props) {
           <input
             onChange={(event) => props.handleSearch(event)}
             placeholder="Search projects"
-            className=" indent-2 font-semibold border-2 rounded-lg hover:text-lg focus:text-lg h-12 my-2  md:w-[48rem] w-[20rem]  "
+            className=" indent-2 font-semibold border-2 rounded-lg hover:text-lg focus:text-lg h-12 my-2  md:w-[40rem] w-[20rem]  "
             style={{
               borderColor: "#F3F8FF",
               backgroundColor: "#F3F8FF",
@@ -85,19 +85,22 @@ export default function Header(props) {
               My Bookmarks
             </a>
           </Link>
-          {!props.isAuthenticated ?
-              <GoogleSignIn
-                  isAuthenticated={props.isAuthenticated}
-                  setLoggedIn={props.setLoggedIn}
-                  setStage={props.setStage}
-                  stage={props.stage}
-                  visibility
-              />
-              : <button onClick={signOut} className="text-indigo-800 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:text-xl ">
-                  Sign Out
-              </button>
-          }
-
+          {!props.isAuthenticated ? (
+            <GoogleSignIn
+              isAuthenticated={props.isAuthenticated}
+              setLoggedIn={props.setLoggedIn}
+              setStage={props.setStage}
+              stage={props.stage}
+              visibility
+            />
+          ) : (
+            <button
+              onClick={signOut}
+              className="text-indigo-800 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:text-xl "
+            >
+              Sign Out
+            </button>
+          )}
         </div>
       </div>
     </nav>
