@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-
 import Stage1Pic from "../../public/assets/svg/stage1.svg";
 import Stage2Pic from "../../public/assets/svg/stage2.svg";
 import Stage3Pic from "../../public/assets/svg/stage3.svg";
@@ -17,6 +16,7 @@ import On3 from "../../public/assets/svg/on3.svg";
 
 function Stage1(props) {
   // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+
   return (
     <div className="md:flex ">
       <div className="w-full md:w-2/3 ">

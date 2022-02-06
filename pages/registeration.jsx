@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Stage1, Stage2, Stage3, Stage4, Error } from "../components/Stages";
 
+import axios from "../utilities/axios";
 import Mainlayout from "../common/Mainlayout";
 
 export default function Registeration() {
@@ -24,7 +25,9 @@ export default function Registeration() {
     startedOn: "",
     duration: "",
     hidden: false,
+    form_filling_stage: 1,
   });
+
   const updateProjectHandler = (target, value) => {
     console.log(target, value);
     setprojectDetails((prevState) => ({
@@ -35,6 +38,8 @@ export default function Registeration() {
 
   const projectSubmission = () => {
     //axios calling with projectDetails as payload
+    axios.post("/ecell/mine/", projectDetails);
+
     nextStage();
   };
 
@@ -43,6 +48,7 @@ export default function Registeration() {
       fullName: "",
       emailID: "",
       socialink: "",
+      form_filling_stage: 2,
     },
   ]);
 
@@ -63,12 +69,17 @@ export default function Registeration() {
     );
   };
 
+  const [onboardingDetail, setonboardingDetail] = useState(false);
+
   const memberSubmission = () => {
+    axios.post(
+      "/ecell/mine",
+      Object.assign({}, membersDetails, { onBoarding: onboardingDetail })
+    );
+
     //axios calling with projectDetails as payload
     nextStage();
   };
-
-  const [onboardingDetail, setonboardingDetail] = useState(false);
 
   const [socialDetails, setsocialDetails] = useState([""]);
 
@@ -90,16 +101,16 @@ export default function Registeration() {
 
   const otherSubmission = () => {
     //axios calling with projectDetails as payload
+    axios.post(
+      "/ecell/registeration",
+      Object.assign(
+        {},
+        { socialLinks: socialDetails },
+        { onBoarding: onboardingDetail }
+      )
+    );
     nextStage();
   };
-
-  // console.log(onboardingDetail);
-  // console.log(socialDetails);
-  console.log(otherDetails);
-
-  // console.log(projectDetails);
-  // console.log(onboardingDetail);
-  // console.log(membersDetails);
 
   return (
     <div className="">
