@@ -281,7 +281,7 @@ function Stage2(props) {
                     <div key={index} className="mt-2 mb-2">
                       <div className="text-xl">Member {index + 1} details</div>
                       <div className="md:flex md:flex-wrap md:justify-between w-full">
-                        <div className="md:w-1/3 md:min-w-1/3 mb-1">
+                        {/* <div className="md:w-1/3 md:min-w-1/3 mb-1">
                           <input
                             type="text"
                             name="fullName"
@@ -298,7 +298,7 @@ function Stage2(props) {
                             }}
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50"
                           />
-                        </div>
+                        </div> */}
                         <div className="md:w-1/3 mb-1">
                           <input
                             type="text"
@@ -317,7 +317,7 @@ function Stage2(props) {
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50   "
                           />
                         </div>
-                        <div className="md:w-1/3 mb-1">
+                        {/* <div className="md:w-1/3 mb-1">
                           <input
                             type="text"
                             name="socialink"
@@ -334,7 +334,7 @@ function Stage2(props) {
                             }}
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50 "
                           />
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   );

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Boldbookmark from "../../public/assets/svg/Boldbookmark.svg";
 import Bookmark from "../../public/assets/svg/bookmark.svg";
-
+import axios from "../../utilities/axios";
 export default function BookmarkButton(props) {
   const [internalbookmarked, setinternalBookmarked] = React.useState(
     props.Bookmarked
@@ -13,6 +13,16 @@ export default function BookmarkButton(props) {
   const handleClick = () => {
     //set value of internalbookmarked to opposite of previous state
     setinternalBookmarked((prevState) => !prevState);
+
+    axios
+      .post("/ecell/bookmarks/", {
+        pk: props.projectID,
+        state: internalbookmarked ? 1 : 0,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+    // nextStage();
 
     // api calls to update database for bookmark axios
   };

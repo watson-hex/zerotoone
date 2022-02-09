@@ -8,6 +8,8 @@ import Mainlayout from "../common/Mainlayout";
 export default function Registeration() {
   const [Stage, setStage] = useState(0);
 
+  const [id, setid] = useState(undefined);
+
   // update Stage value by 1 also prevent defaults
 
   const nextStage = () => {
@@ -38,19 +40,15 @@ export default function Registeration() {
 
   const projectSubmission = () => {
     //axios calling with projectDetails as payload
-    axios.post("/ecell/mine/", projectDetails);
+    axios.post("/ecell/mine/", projectDetails).then((res) => {
+      console.log(res);
+      setid(res.data.id);
+    });
 
     nextStage();
   };
 
-  const [membersDetails, setmembersDetails] = useState([
-    {
-      fullName: "",
-      emailID: "",
-      socialink: "",
-      form_filling_stage: 2,
-    },
-  ]);
+  const [membersDetails, setmembersDetails] = useState([""]);
 
   const updateMemberHandler = (index, target, value) => {
     console.log(index, target, value);
@@ -59,10 +57,7 @@ export default function Registeration() {
       // update a particular member
       membersDetails.map((member) => {
         if (membersDetails.indexOf(member) === index) {
-          return {
-            ...member,
-            [target]: value,
-          };
+          return value;
         }
         return member;
       })
@@ -72,10 +67,11 @@ export default function Registeration() {
   const [onboardingDetail, setonboardingDetail] = useState(false);
 
   const memberSubmission = () => {
-    axios.post(
-      "/ecell/mine",
-      Object.assign({}, membersDetails, { onBoarding: onboardingDetail })
-    );
+    axios.patch("/ecell/mine/", {
+      owners: membersDetails,
+      onBoarding: onboardingDetail,
+      id: id,
+    });
 
     //axios calling with projectDetails as payload
     nextStage();
@@ -100,16 +96,17 @@ export default function Registeration() {
   const [otherDetails, setotherDetails] = useState("");
 
   const otherSubmission = () => {
-    //axios calling with projectDetails as payload
-    axios.post(
-      "/ecell/registeration",
-      Object.assign(
-        {},
-        { socialLinks: socialDetails },
-        { onBoarding: onboardingDetail }
-      )
-    );
-    nextStage();
+    axios
+      .patch("/ecell/mine/", {
+        social_links: JSON.stringify(socialDetails),
+        updates: otherDetails,
+        id: id,
+      })
+      .then((res) => {
+        console.log(res);
+        setStage(3);
+      });
+    // nextStage();
   };
 
   return (

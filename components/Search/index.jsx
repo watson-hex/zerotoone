@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Projectcard from "../Projectcard";
 import ReactDOM from "react-dom";
 import ReactPaginate from "react-paginate";
@@ -14,12 +13,7 @@ function Items(props) {
           return (
             <>
               <div key={value.id} className="w-full mr-3 mb-3 md:m-0 ">
-                <Projectcard
-                  element={value}
-                  ID={value.id}
-                  Pname={value.name}
-                  PSdesc={value.idea}
-                />
+                <Projectcard element={value} />
               </div>
             </>
           );

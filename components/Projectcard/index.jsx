@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Tag from "../../common/Tag";
 import Detail from "../../common/Detail";
@@ -7,6 +7,7 @@ import Boldbookmark from "../../public/assets/svg/Boldbookmark.svg";
 import Bookmark from "../../public/assets/svg/bookmark.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import axios from "../../utilities/axios";
 
 export default function Projectcard(props) {
   const router = useRouter();
@@ -38,7 +39,10 @@ export default function Projectcard(props) {
             className="flex flex-col text-sm justify-end "
             style={{ color: "#6A98BF" }}
           >
-            <BookmarkButton Bookmarked={props.element.bookmarked} />
+            <BookmarkButton
+              Bookmarked={props.element.bookmarked}
+              projectID={props.element.id}
+            />
 
             <span className="flex justify-center pt-2">
               <Tag text={props.element.ongoing ? "Collaborating " : "Full"} />
