@@ -28,7 +28,7 @@ export default function Projectcard(props) {
               </div>
               <div className="absolute inset-x-0 bottom-0 m-3 ">
                 <div className="flex justify-start text-sm font-light">
-                  {props.element.description}
+                  {props.element.description.substring(0, 90)}
                 </div>
               </div>
             </div>

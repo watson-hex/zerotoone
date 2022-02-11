@@ -70,6 +70,8 @@ export default function Registeration() {
     axios.patch("/ecell/mine/", {
       owners: membersDetails,
       onBoarding: onboardingDetail,
+      form_filling_stage: 2,
+
       id: id,
     });
 
@@ -100,6 +102,8 @@ export default function Registeration() {
       .patch("/ecell/mine/", {
         social_links: JSON.stringify(socialDetails),
         updates: otherDetails,
+        form_filling_stage: 4,
+
         id: id,
       })
       .then((res) => {
