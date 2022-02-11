@@ -13,7 +13,7 @@ import Tag from "../../common/Tag";
 import Arrow from "../../public/assets/svg/arrow.svg";
 import axios from "../../utilities/axios";
 import Image from "next/image";
-
+import Loading from "../../common/Loading";
 export default function ProjectPage(props) {
   const [Data, setData] = useState(undefined);
   const [goneThrough, setgoneThrough] = useState(false);
@@ -232,7 +232,11 @@ export default function ProjectPage(props) {
       </div>
     );
   } else {
-    return <div>loading</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 }
 
