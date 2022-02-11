@@ -28,7 +28,7 @@ export default function Projectcard(props) {
               </div>
               <div className="absolute inset-x-0 bottom-0 m-3 ">
                 <div className="flex justify-start text-sm font-light">
-                  {props.element.idea}
+                  {props.element.description}
                 </div>
               </div>
             </div>
@@ -45,7 +45,9 @@ export default function Projectcard(props) {
             />
 
             <span className="flex justify-center pt-2">
-              <Tag text={props.element.ongoing ? "Collaborating " : "Full"} />
+              <Tag
+                text={props.element.onboarding ? "Collaborating " : "Full"}
+              />
             </span>
             <span className="flex justify-center pt-1">
               <Tag text={props.element.stage} />

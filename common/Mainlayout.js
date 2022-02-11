@@ -30,9 +30,9 @@ export default function Mainlayout({
     setFilteredData(result);
   };
   const router = useRouter();
-  console.log(router.asPath);
+  console.log(router.asPath, " hi");
 
-  useEffect(() => {
+  useEffect(() => { 
     if (router.asPath === "/myprojects/all") {
       axios("/ecell/mine")
         .then((response) => {

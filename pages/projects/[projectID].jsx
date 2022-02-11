@@ -16,16 +16,28 @@ import Image from "next/image";
 
 export default function ProjectPage(props) {
   // useeffect function axios calling for data
+  const [Data, setData] = useState(undefined);
+  // const [Valid, setValid] = useState(false);
 
   const router = useRouter();
 
+  var projectID = undefined;
+  console.log(router.asPath, "hi hai bhai");
+  if (projectID === undefined) {
+    const array = router.asPath.split("/");
+    projectID = array[array.length - 1];
+    console.log(projectID, "is the new one");
+  }
 
-  const projectID = router.query.projectID;
   useEffect(() => {
-    axios.get("/ecell/all/").then((res) => {
-      console.group("hello");
-    });
-  }, []);
+    if (projectID !== undefined) {
+      console.log("main call mar raha hu abb");
+      axios.get("/ecell/all/" + projectID).then((res) => {
+        console.group(res.data);
+        setData(res.data);
+      });
+    }
+  }, [projectID]);
 
   const [Tags, setTags] = useState(["project", "machinelearning"]);
   const [Members, setMembers] = useState([
@@ -36,9 +48,6 @@ export default function ProjectPage(props) {
     { name: "Yashwardhan", link: "atom" },
   ]);
 
-  if (projectID === undefined)
-    return null;
-  console.log("projectID is", projectID);
   return (
     <div>
       <div
@@ -52,7 +61,7 @@ export default function ProjectPage(props) {
           <div className="drop-shadow-md rounded-xl bg-white bg-[url('/assets/svg/projectprofile.svg')]  h-full">
             <div className="flex container flex-wrap justify-between pl-5 pr-5 bg-[#538EE1]/[0.8]  rounded-t-xl w-full  ">
               <div className=" my-3 text-white font-semibold text-4xl ">
-                Project Name
+                {Data !== undefined ? Data.name : "Project Name"}
               </div>
               {/* <div className="my-3">
                 <Image src={Pencil} alt="Hello" />
@@ -74,11 +83,9 @@ export default function ProjectPage(props) {
                     </div> */}
                   </div>
                   <p className="text-sm mt-5">
-                    Guidlines and other Information, Lorem Ipsum is simply dummy
-                    text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry&apos;s standard dummy text ever since
-                    the 1500s, when an unknown printer took a galley of type and
-                    scrambled it to make a type specimen book.{" "}
+                    {Data
+                      ? Data.description
+                      : " Guidlines and other Information, Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum  has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
                   </p>
                   <div className="flex  flex-wrap justify-around mt-4   rounded-t-xl w-full  ">
                     <div className="my-auto  text-[#6A98BF] font-semibold">
@@ -103,7 +110,7 @@ export default function ProjectPage(props) {
                 </div>
                 <p className="text-lg flex flex-wrap text-[#6A98BF] container ">
                   {" "}
-                  {Tags.map((user, index) => (
+                  {Data?.tags.split(",").map((user, index) => (
                     <span key={index}>#{user}</span>
                   ))}
                 </p>
