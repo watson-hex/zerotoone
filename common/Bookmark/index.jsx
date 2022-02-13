@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Image from "next/image";
 import Boldbookmark from "../../public/assets/svg/Boldbookmark.svg";
 import Bookmark from "../../public/assets/svg/bookmark.svg";
@@ -7,21 +7,27 @@ export default function BookmarkButton(props) {
   const [internalbookmarked, setinternalBookmarked] = React.useState(
     props.Bookmarked
   );
+
+  useEffect(() => {
+    setinternalBookmarked(props.Bookmarked);
+  }, [props.Bookmarked]);
+  console.log("internalbookmarked", internalbookmarked);
   // handle state of button click
 
   // handler function to change state of button click
   const handleClick = () => {
     //set value of internalbookmarked to opposite of previous state
-    setinternalBookmarked((prevState) => !prevState);
+
 
     axios
       .post("/ecell/bookmarks/", {
         pk: props.projectID,
-        state: internalbookmarked ? 1 : 0,
+        state: internalbookmarked ? 0 : 1,
       })
       .then((res) => {
         console.log(res);
       });
+      setinternalBookmarked((prevState) => !prevState);
     // nextStage();
 
     // api calls to update database for bookmark axios

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import jwt from "jsonwebtoken";
+import React, {useContext, useEffect} from "react";
 import Image from "next/image";
 import Tag from "../../common/Tag";
 import Detail from "../../common/Detail";
@@ -7,13 +8,16 @@ import Boldbookmark from "../../public/assets/svg/Boldbookmark.svg";
 import Bookmark from "../../public/assets/svg/bookmark.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {LoginContext} from "../../utilities/auth";
 import axios from "../../utilities/axios";
 
 export default function Projectcard(props) {
   const router = useRouter();
+  const isAuthenticated = useContext(LoginContext);
   var href =
     router.asPath === "/myprojects/all" ? "/myprojects/" : "/projects/";
   href = href + props.element.id;
+
   return (
     <div id={props.element.id} className="drop-shadow-md overflow-hidden">
       <div className=" flex rounded-3xl bg-white md:p-2 justify-around">
@@ -40,7 +44,7 @@ export default function Projectcard(props) {
             style={{ color: "#6A98BF" }}
           >
             <BookmarkButton
-              Bookmarked={props.element.bookmarked}
+              Bookmarked={isAuthenticated?props.element.bookmarked_by.map(x => x.email).includes(jwt.decode(sessionStorage.getItem("token")).email):false}
               projectID={props.element.id}
             />
 
