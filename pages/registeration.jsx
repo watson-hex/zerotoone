@@ -17,6 +17,11 @@ export default function Registeration() {
     // console.log(Stage);
   };
 
+  const prevStage = () => {
+    setStage(Stage - 1);
+    // console.log(Stage);
+  };
+
   // update handler to assign values to target
 
   const [projectDetails, setprojectDetails] = useState({
@@ -129,6 +134,7 @@ export default function Registeration() {
           setmembersDetails={setmembersDetails}
           updateMemberHandler={updateMemberHandler}
           nextStage={nextStage}
+          prevStage={prevStage}
           setonboardingDetail={setonboardingDetail}
           memberSubmission={memberSubmission}
         />
@@ -139,6 +145,7 @@ export default function Registeration() {
           socialDetails={socialDetails}
           setsocialDetails={setsocialDetails}
           nextStage={nextStage}
+          prevStage={prevStage}
           updateSocialHandler={updateSocialHandler}
           otherSubmission={otherSubmission}
         />

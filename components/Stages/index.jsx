@@ -41,6 +41,8 @@ function Stage1(props) {
                     <input
                       type="text"
                       name="name"
+                      required
+                      value={props.projectDetails.name}
                       onChange={(e) => {
                         props.updateProjectHandler(
                           [e.target.name],
@@ -63,8 +65,9 @@ function Stage1(props) {
                           e.target.value
                         );
                       }}
+                      required
                     >
-                      <option>Yes</option>
+                      <option defaultChecked>Yes</option>
                       <option>No</option>
                       <option>Maybe</option>
                     </select>
@@ -77,6 +80,7 @@ function Stage1(props) {
                     <textarea
                       type="text"
                       name="description"
+                      required
                       onChange={(e) => {
                         props.updateProjectHandler(
                           [e.target.name],
@@ -95,6 +99,7 @@ function Stage1(props) {
                         <input
                           type="text"
                           name="startedOn"
+                          required
                           onChange={(e) => {
                             props.updateProjectHandler(
                               [e.target.name],
@@ -112,6 +117,7 @@ function Stage1(props) {
                         <input
                           type="text"
                           name="duration"
+                          required
                           onChange={(e) => {
                             props.updateProjectHandler(
                               [e.target.name],
@@ -125,7 +131,10 @@ function Stage1(props) {
                     </div>
                   </div>
                   <div className="flex flex-col w-full md:w-1/2 mb-4">
-                    <label className=" mb-2 text-xl ">Associated Tags</label>
+                    <label className=" mb-2 text-xl ">
+                      Associated Tags
+                      <span className="text-sm"> &nbsp; (optional)</span>
+                    </label>
                     <input
                       type="text"
                       name="tags"
@@ -186,6 +195,7 @@ function Stage1(props) {
                       </div>
                       <div className="whitespace-normal text-gray-700 font-small w-max">
                         Keep Hidden ?
+                        <span className="text-sm"> &nbsp; (optional)</span>
                       </div>
                     </label>
                   </div>
@@ -275,7 +285,7 @@ function Stage2(props) {
             }}
           >
             <div className="rounded-xl md:w-4/5 mx-auto bg-[#DAE8FC] mt-6 p-4 md:p-5  ">
-              <div className="md:flex md:flex-col  ">
+              <div className="md:flex md:flex-col md:justify-center w-3/5   ">
                 {props.membersDetails.map((member, index) => {
                   return (
                     <div key={index} className="mt-2 mb-2">
@@ -299,11 +309,12 @@ function Stage2(props) {
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50"
                           />
                         </div> */}
-                        <div className="md:w-1/3 mb-1">
+                        <div className="md:w-2/3 mb-1">
                           <input
                             type="text"
                             name="emailID"
                             placeholder="Email"
+                            required
                             onChange={(e) => {
                               e.preventDefault();
 
@@ -409,6 +420,14 @@ function Stage2(props) {
                 </label>
               </div>
               <div className="justify-center flex pt-9 pb-8">
+                <button
+                  type="button"
+                  onClick={props.prevStage}
+                  className="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-8  rounded w-max"
+                >
+                  Previous
+                </button>
+
                 <button
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-8  rounded w-max"
@@ -594,6 +613,13 @@ function Stage3(props) {
                   </div>
                 </div>
                 <div className="justify-center flex pt-5">
+                  <button
+                    type="button"
+                    onClick={props.prevStage}
+                    className="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-8  rounded w-max"
+                  >
+                    Previous
+                  </button>
                   <button className="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-8  rounded w-max ">
                     Submit
                   </button>
