@@ -108,7 +108,7 @@ class FormSignIn extends React.Component {
             >
                 <Modal.Header className="bg-dark">
                     <Modal.Title className="text-light">
-                        Lets Create your Profile Amigo!!
+                        Let&apos;s Create your Profile Amigo!!
                     </Modal.Title>
                 </Modal.Header>
 

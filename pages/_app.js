@@ -3,6 +3,7 @@ import {useState} from "react";
 import Mainlayout from "../common/Mainlayout";
 import {authSetLoggedIn, authSetLoggedOut, isBrowser} from "../utilities/auth";
 import {Metrics} from '@layer0/rum'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function MyApp({ Component, pageProps }) {
   new Metrics({
