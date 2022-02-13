@@ -311,7 +311,7 @@ function Stage2(props) {
                         </div> */}
                         <div className="md:w-2/3 mb-1">
                           <input
-                            type="text"
+                            type="email"
                             name="emailID"
                             placeholder="Email"
                             required
@@ -517,6 +517,7 @@ function Stage3(props) {
                           <input
                             type="text"
                             name="Project Name"
+                            required
                             onChange={(e) => {
                               e.preventDefault();
                               props.updateSocialHandler(index, e.target.value);
