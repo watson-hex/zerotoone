@@ -7,7 +7,10 @@ const _preLayer0Export = {
   images: {
     domains: ["via.placeholder.com", "bit.ly"],
   },
-};;
+    eslint: {
+        ignoreDuringBuilds: true,
+    }
+};
 
 module.exports = (phase, config) =>
   withLayer0(
