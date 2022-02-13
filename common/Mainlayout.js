@@ -25,14 +25,24 @@ export default function Mainlayout({
     let result = [];
     console.log(value);
     result = allData.filter((data) => {
-      return data.title.search(value) != -1;
+      var myStr = data.tags;
+      var newStr = myStr.replace(/,/g, " ");
+
+      var searcher =
+        data.name.toLowerCase() +
+        " " +
+        data.description.toLowerCase() +
+        " " +
+        newStr.toLowerCase();
+      console.log(searcher);
+      return searcher.search(value) != -1;
     });
     setFilteredData(result);
   };
   const router = useRouter();
   console.log(router.asPath, " hi");
 
-  useEffect(() => { 
+  useEffect(() => {
     if (router.asPath === "/myprojects/all") {
       axios("/ecell/mine")
         .then((response) => {
