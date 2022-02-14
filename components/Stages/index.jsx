@@ -66,6 +66,7 @@ function Stage1(props) {
                         );
                       }}
                       required
+                      value={props.projectDetails.stage}
                     >
                       <option defaultChecked>Yes</option>
                       <option>No</option>
@@ -81,6 +82,7 @@ function Stage1(props) {
                       type="text"
                       name="description"
                       required
+                      value={props.projectDetails.description}
                       onChange={(e) => {
                         props.updateProjectHandler(
                           [e.target.name],
@@ -100,6 +102,7 @@ function Stage1(props) {
                           type="text"
                           name="startedOn"
                           required
+                          value={props.projectDetails.startedOn}
                           onChange={(e) => {
                             props.updateProjectHandler(
                               [e.target.name],
@@ -118,6 +121,7 @@ function Stage1(props) {
                           type="text"
                           name="duration"
                           required
+                          value={props.projectDetails.duration}
                           onChange={(e) => {
                             props.updateProjectHandler(
                               [e.target.name],
@@ -138,6 +142,7 @@ function Stage1(props) {
                     <input
                       type="text"
                       name="tags"
+                      value={props.projectDetails.tags}
                       onChange={(e) => {
                         props.updateProjectHandler(
                           [e.target.name],
@@ -183,6 +188,7 @@ function Stage1(props) {
                           id="toggleB"
                           className="sr-only"
                           name="hidden"
+                          value={props.projectDetails.hidden}
                           onClick={(e) => {
                             props.updateProjectHandler(
                               [e.target.name],
@@ -194,7 +200,9 @@ function Stage1(props) {
                         <div className="dot absolute drop-shadow-lg left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
                       </div>
                       <div className="whitespace-normal text-gray-700 font-small w-max">
-                        Keep Hidden ?
+                        {props.projectDetails.hidden
+                          ? " Visible to all "
+                          : "Hidden from community "}
                         <span className="text-sm"> &nbsp; (optional)</span>
                       </div>
                     </label>
@@ -315,6 +323,7 @@ function Stage2(props) {
                             name="emailID"
                             placeholder="Email"
                             required
+                            value={member}
                             onChange={(e) => {
                               e.preventDefault();
 
@@ -407,6 +416,8 @@ function Stage2(props) {
                       id="toggleB"
                       className="sr-only"
                       name="onboarding"
+                      required
+                      value={props.onBoardingDetail}
                       onClick={(e) => {
                         props.setonboardingDetail(e.target.checked);
                       }}
@@ -415,7 +426,7 @@ function Stage2(props) {
                     <div className="dot absolute drop-shadow-lg left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
                   </div>
                   <div className="whitespace-normal text-gray-700 font-small w-max">
-                    Set onboarding true?
+                    {props.onBoardingDetail ? "Onboarding" : "Not Onboarding"}
                   </div>
                 </label>
               </div>
@@ -517,7 +528,7 @@ function Stage3(props) {
                           <input
                             type="text"
                             name="Project Name"
-                            required
+                            value={social}
                             onChange={(e) => {
                               e.preventDefault();
                               props.updateSocialHandler(index, e.target.value);

@@ -28,7 +28,7 @@ export default function Registeration() {
     name: "",
     description: "",
     tags: "",
-    stage: "Yes",
+    stage: "Just Starting",
     startedOn: "",
     duration: "",
     hidden: false,
@@ -135,6 +135,7 @@ export default function Registeration() {
           updateMemberHandler={updateMemberHandler}
           nextStage={nextStage}
           prevStage={prevStage}
+          onBoardingDetail={onboardingDetail}
           setonboardingDetail={setonboardingDetail}
           memberSubmission={memberSubmission}
         />
