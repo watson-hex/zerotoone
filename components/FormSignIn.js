@@ -9,13 +9,56 @@ import Loading from "./Loading";
 import ReactDOM from "react-dom";
 import Modal from "react-modal";
 
+const Stage1 = (props) => {
+  return (
+    <div className=" w-full">
+      <span className=" text-3xl "> Terms and Conditions </span>
+      <div className="overflow-scroll h-[30rem]">
+        TNC-1 To sign in on a platform Member Conduct: Do not attempt to obtain
+        unauthorized access to the services or to Oath's servers, systems,
+        networks, or data. Do not organize, promote hate speech. It's
+        unacceptable to attack a person or a community based on attributes such
+        as their race, ethnicity, national origin, sex, gender, sexual
+        orientation, religious affiliation, disabilities, etc. Do not make
+        available any content that you do not have the right to make available
+        or that infringes any patent, trademark, copyright, or other proprietary
+        rights. Do not post content containing advertisements or other
+        commercial solicitations without our prior written permission. Do not
+        post/share any abusive, harassing, defamatory, vulgar, invasive to
+        another's privacy. Do not copy or reproduce or share any idea or
+        information outside the community Who can use this Platform: All the
+        students who are enrolled in any course and programme at IIITD can
+        access the platform. Termination Clause: On becoming aware of any
+        potential violation of the above-mentioned Terms&Conditions, we reserve
+        all the rights(but shall have no obligation) to decide whether Content
+        complied with the content requirements set out in these terms and may
+        remove such content and/or terminate a User's access for uploading
+        content which is in violation of these terms at any time, without any
+        prior notice. Any default arising out of the covenants of this agreement
+        shall be prosecuted before competent authorities and be liable for legal
+        consequences.
+      </div>
+      <div className="flex items-center justify-end p-6 pb-0 border-t border-solid border-blueGray-200 rounded-b">
+        <button
+          className="bg-[#538EE1]/[0.8] text-white active:bg-[#538EE1] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          onClick={props.handleNextInternal}
+          type="submit"
+          value="Submit"
+        >
+          Agree
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const customStyles = {
   content: {
-    top: "50%",
+    top: "40%",
     left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
+    right: "20%",
+    bottom: "10%",
+    marginRight: "",
     transform: "translate(-50%, -50%)",
   },
 };
@@ -49,6 +92,7 @@ class FormSignIn extends React.Component {
       course: "",
       isLoading: false,
       currentModal: true,
+      internalStage: 0,
     };
   }
 
@@ -77,6 +121,15 @@ class FormSignIn extends React.Component {
     this.setState({
       currentModal: false,
     });
+  }
+
+  // handle next class method to update the internal stage by one from the previous stage
+  handleNextInternal() {
+    this.setState((prevState) => ({
+      internalStage: {
+        ...(prevState.internalStage + 1),
+      },
+    }));
   }
 
   handleSubmit(e) {
@@ -108,129 +161,135 @@ class FormSignIn extends React.Component {
     if (this.state.isLoading) return <Loading />;
     else
       return (
-        <div>
+        <div className="">
           <Modal
+            // className="bg-black"
             isOpen={true}
             // onAfterOpen={afterOpenModal}
             // onRequestClose={closeModal}
-            style={customStyles}
+            // style={customStyles}
+            className="m-3 drop-shadow-md rounded-3xl bg-white p-4 md:w-2/6 md:h-5/6 mx-auto md:mt-12 "
             contentLabel="Example Modal"
           >
-            <form
-              className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
-              action="#"
-            >
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                  First Name
-                </label>
-                <input
-                  onChange={this.handleChangeFirstName}
-                  placeholder="name input"
-                  type="text"
-                  value={this.state.FirstName}
-                  id="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                  required
+            <div className="">
+              {this.state.internalStage === 0 ? (
+                <Stage1
+                  handleNextInternal={this.handleNextInternal.bind(this)}
                 />
-              </div>
+              ) : (
+                <>
+                  <span className="text-3xl text-center p-3">
+                    Let's get you started
+                  </span>
+                  <form
+                    className="px-6 pt-4 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
+                    action="#"
+                  >
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        First Name
+                      </label>
+                      <input
+                        onChange={this.handleChangeFirstName}
+                        placeholder="name input"
+                        type="text"
+                        value={this.state.FirstName}
+                        id="email"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        required
+                      />
+                    </div>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                  Email Address:
-                </label>
-                <input
-                  disabled
-                  type="email"
-                  value={this.state.email}
-                  id="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                />
-              </div>
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Email Address:
+                      </label>
+                      <input
+                        disabled
+                        type="email"
+                        value={this.state.email}
+                        id="email"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                      />
+                    </div>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                  Degree:
-                </label>
-                <select
-                  className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
-                  onChange={this.handleChangeDegree}
-                  required
-                >
-                  <option value="" defaultChecked>
-                    ---Select Degree---
-                  </option>
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Degree:
+                      </label>
+                      <select
+                        className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                        onChange={this.handleChangeDegree}
+                        required
+                      >
+                        <option value="" defaultChecked>
+                          ---Select Degree---
+                        </option>
 
-                  <option value="M">M-Tech</option>
-                  <option value="B">B-Tech</option>
+                        <option value="M">M-Tech</option>
+                        <option value="B">B-Tech</option>
 
-                  <option value="P">Ph.D.</option>
-                  <option value="F">Faculty</option>
-                </select>
-              </div>
+                        <option value="P">Ph.D.</option>
+                        <option value="F">Faculty</option>
+                      </select>
+                    </div>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                  Degree:
-                </label>
-                <select
-                  className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
-                  onChange={this.handleChangeCourse}
-                  required={this.state.course === "B"}
-                  value={this.state.course}
-                >
-                  <option value="" defaultChecked>
-                    ---Select Course---
-                  </option>
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Degree:
+                      </label>
+                      <select
+                        className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                        onChange={this.handleChangeCourse}
+                        required={this.state.course === "B"}
+                        value={this.state.course}
+                      >
+                        <option value="" defaultChecked>
+                          ---Select Course---
+                        </option>
 
-                  <option value="CSAI">CSAI</option>
+                        <option value="CSAI">CSAI</option>
 
-                  <option value="CSE">CSE</option>
+                        <option value="CSE">CSE</option>
 
-                  <option value="CSB">CSB</option>
+                        <option value="CSB">CSB</option>
 
-                  <option value="CSD">CSD</option>
+                        <option value="CSD">CSD</option>
 
-                  <option value="CSSS">CSSS</option>
+                        <option value="CSSS">CSSS</option>
 
-                  <option value="CSAM">CSAM</option>
+                        <option value="CSAM">CSAM</option>
 
-                  <option value="ECE">ECE</option>
-                </select>
-              </div>
+                        <option value="ECE">ECE</option>
+                      </select>
+                    </div>
 
-              <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                <button
-                  className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"
-                  onClick={() => {
-                    this.handleCloseModal.bind(this);
-                  }}
-                >
-                  Close
-                </button>
-                <button
-                  className="bg-[#538EE1]/[0.8] text-white active:bg-[#538EE1] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  onClick={this.handleSubmit}
-                  type="submit"
-                  value="Submit"
-                >
-                  Save Changes
-                </button>
-              </div>
-            </form>
+                    <div className="flex items-center justify-end p-6 pb-0 border-t border-solid border-blueGray-200 rounded-b">
+                      <button
+                        className="bg-[#538EE1]/[0.8] text-white active:bg-[#538EE1] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        onClick={this.handleSubmit}
+                        type="submit"
+                        value="Submit"
+                      >
+                        Save Changes
+                      </button>
+                    </div>
+                  </form>
+                </>
+              )}
+            </div>
           </Modal>
         </div>
         // <Modal
