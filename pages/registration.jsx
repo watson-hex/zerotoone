@@ -143,9 +143,11 @@ export default function Registeration() {
 
   const isAuthenticated = useContext(LoginContext);
   const router = useRouter();
-  if (!isAuthenticated) {
-    router.push("/403");
-  }
+
+  useEffect(() => {
+    if (!isAuthenticated)
+      router.push("/403");
+  }, [isAuthenticated, router]);
 
   return (
     <div className="">
