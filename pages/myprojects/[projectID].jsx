@@ -55,6 +55,9 @@ export default function ProjectPage(props) {
   ]);
 
   if (Data !== undefined) {
+    var socials = JSON.parse(Data.social_links);
+    console.log(socials);
+
     return (
       <>
         {showModal ? (
@@ -140,9 +143,9 @@ export default function ProjectPage(props) {
                 </div>
               </div>
             </div>
-            <div className="md:mx-0 md:w-1/2 min-w-1/2">
+            <div className="md:mx-0 md:w-1/2 min-w-1/2 pl-4">
               <div className="flex flex-wrap">
-                <div className=" md:ml-5 md:mr-0 md:mt-0 md:mb-7 md:mr-0 ">
+                <div className="  md:mr-0 md:mt-0 md:mb-5 md:mr-0 ">
                   <div className=" drop-shadow-md rounded-xl bg-white p-2">
                     <div className="">
                       <div className="flex container-flex flex-wrap justify-between   rounded-t-xl w-full  ">
@@ -220,10 +223,7 @@ export default function ProjectPage(props) {
                         </div>
                       </div>
                       <p className="text-sm container text-black ">
-                        {" "}
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the industry
-                        Lorem Ipsum is simply dummy text of the printing and
+                        {Data.other ? Data.other : "We'll Let you know soon"}
                       </p>
                       {/* <div className="flex  flex-wrap justify-between mt-4  rounded-t-xl w-full  ">
                       <div className="my-auto  text-[#6A98BF] font-semibold"></div>
@@ -256,32 +256,28 @@ export default function ProjectPage(props) {
                 </div>
                 <div className="">
                   <div className="flex flex-wrap justify-around rounded-t-xl w-full pb-0 pt-6   ">
-                    <div className=" flex flex-col text-[#6A98BF] font-semibold   ">
-                      <div className="">
-                        <Image src={Calendar} alt="Hello" />
-                        <span className="text-lg">Started On:</span>
-                        <span className="my-auto text-lg text-black">
-                          {/* {props.data} */}
-                          11-11-22
-                        </span>
-                      </div>
+                    <div className=" flex flex-col text-[#6A98BF] font-semibold ">
+                      <span className="my-auto text-lg">Started On:</span>
+                      <span className="my-auto  text-lg text-black">
+                        {Data.startedOn ? Data.startedOn : "Once"}
+                      </span>
                     </div>
                     <div className=" flex flex-col text-[#6A98BF] font-semibold ">
                       <span className="my-auto text-lg">
                         Tentative Completion in:
                       </span>
                       <span className="my-auto  text-lg text-black">
-                        {/* {props.data} */}3 months
+                        {Data.duration ? Data.duration : "Once"}
                       </span>
                     </div>
                   </div>
                 </div>
                 <div>
                   <div className="flex mt-12 flex-wrap justify-center rounded-t-xl ">
-                    {Members.map((user, index) => (
+                    {socials.map((user, index) => (
                       <div key={index} className="flex flex-wrap px-2 ">
-                        <Link href={user.link} passHref>
-                          <Image src={Social} alt="Hello" />
+                        <Link href={"https://" + user} passHref>
+                          <Image src={Social} alt={user} />
                         </Link>
                       </div>
                     ))}
@@ -311,13 +307,24 @@ export default function ProjectPage(props) {
                   </div>
                 </div>
                 <div className="m-5 grid grid-cols-3  gap-3">
-                  {Members.map((user, index) => (
+                  {Data.owner_details.map((user, index) => (
                     <div key={index} className=" justify-between rounded-t-xl ">
                       <div className="flex flex-col justify-center">
-                        <span className="my-auto mx-auto">{user.name}</span>
+                        <span className="my-auto mx-auto">
+                          {user.First_Name + " " + user.Last_Name}
+                        </span>
                         <div className="flex flex-wrap justify-center">
-                          <Image src={Profile} alt="Hello" />
-                          <Image src={Profile} alt="Hello" />
+                          <Link
+                            href={
+                              "https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=" +
+                              user.email
+                            }
+                            passHref
+                          >
+                            <a target="_blank">
+                              <Image src={Social} alt={user} />
+                            </a>
+                          </Link>
                         </div>
                       </div>
                     </div>

@@ -660,7 +660,7 @@ function Stage3(props) {
                       </div>
                     </div>
 
-                    <div className="md:flex md:flex-col md:w-1/2 mt-4 mb-4">
+                    <div className="md:flex md:flex-col md:w-1/2  mb-4">
                       <label className=" mb-2 text-xl ">
                         Other Information ?
                       </label>
@@ -679,7 +679,7 @@ function Stage3(props) {
                       />
                     </div>
                   </div>
-                  <div className="justify-center flex pt-9 pb-2 md:pb-4">
+                  <div className="justify-center flex pt-9 pb-2 md:pb-2">
                     <button
                       type="button"
                       onClick={props.prevStage}
