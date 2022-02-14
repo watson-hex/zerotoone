@@ -279,7 +279,7 @@ function Stage2(props) {
   return (
     <div className="md:flex">
       <div className="w-full md:w-2/3 ">
-        <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-3 ">
+        <div className=" drop-shadow-md rounded-xl bg-white h-full  m-2 md:m-4 p-3 ">
           <div>
             <div className="justify-center flex pt-5">
               <Image src={On2} alt="Hello" />{" "}
@@ -292,12 +292,15 @@ function Stage2(props) {
               // call next stage after submission
             }}
           >
-            <div className="rounded-xl md:w-4/5 mx-auto bg-[#DAE8FC] mt-6 p-4 md:p-5  ">
-              <div className="md:flex md:flex-col md:justify-center w-3/5   ">
+            <div className="rounded-xl md:w-5/6 mx-auto bg-[#DAE8FC] mt-6 p-2 md:p-1  ">
+              <div className="md:flex md:flex-col md:justify-center w-full md:w-2/3 mx-auto justify-center">
                 {props.membersDetails.map((member, index) => {
+                  console.log(member);
                   return (
                     <div key={index} className="mt-2 mb-2">
-                      <div className="text-xl">Member {index + 1} details</div>
+                      <div className="text-xl pb-1">
+                        Member {index + 1} details
+                      </div>
                       <div className="md:flex md:flex-wrap md:justify-between w-full">
                         {/* <div className="md:w-1/3 md:min-w-1/3 mb-1">
                           <input
@@ -317,13 +320,13 @@ function Stage2(props) {
                             className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50"
                           />
                         </div> */}
-                        <div className="md:w-2/3 mb-1">
+                        <div className=" mb-1 w-full">
                           <input
                             type="email"
                             name="emailID"
                             placeholder="Email"
                             required
-                            value={member}
+                            value={member.emailID}
                             onChange={(e) => {
                               e.preventDefault();
 
@@ -334,7 +337,7 @@ function Stage2(props) {
                               );
                               // call next stage after submission
                             }}
-                            className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50   "
+                            className="w-full text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50   "
                           />
                         </div>
                         {/* <div className="md:w-1/3 mb-1">
@@ -360,7 +363,7 @@ function Stage2(props) {
                   );
                 })}
 
-                <div className="flex justify-end">
+                <div className="flex justify-end mr-2">
                   {props.membersDetails.length < 5 ? (
                     <div onClick={addMember}>
                       <svg
@@ -377,15 +380,13 @@ function Stage2(props) {
                       </svg>
                     </div>
                   ) : (
-                    <div>
-                      Can't add more than {props.membersDetails.length} members
-                    </div>
+                    <div></div>
                   )}
 
                   {props.membersDetails.length > 1 ? (
                     <div
                       type="submit"
-                      className="text-gray-700 text-sm font-bold py-2 rounded"
+                      className="text-gray-700 text-sm font-bold py-2 rounded mr-2 ml-2"
                       onClick={(e) => {
                         removeMember();
                       }}
@@ -408,7 +409,7 @@ function Stage2(props) {
                   )}
                 </div>
               </div>
-              <div className="flex flex-col relative w-1/2 mt-4 mb-4 p-2 ">
+              <div className="flex flex-col relative w-1/2 mt-6 mb-2 p-2 md:w-2/3 md:mx-auto ">
                 <label className="flex absolute items-center cursor-pointer">
                   <div className="relative">
                     <input
@@ -416,7 +417,6 @@ function Stage2(props) {
                       id="toggleB"
                       className="sr-only"
                       name="onboarding"
-                      required
                       value={props.onBoardingDetail}
                       onClick={(e) => {
                         props.setonboardingDetail(e.target.checked);
@@ -430,18 +430,18 @@ function Stage2(props) {
                   </div>
                 </label>
               </div>
-              <div className="justify-center flex pt-9 pb-8">
+              <div className="justify-center flex pt-9 pb-2 md:pb-4">
                 <button
                   type="button"
                   onClick={props.prevStage}
-                  className="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-8  rounded w-max"
+                  className="bg-blue-500 hover:bg-blue-700 text-white  md:text-2xl font-bold py-2 px-6 md:py-2 md:px-8  mr-1 rounded w-max"
                 >
                   Previous
                 </button>
 
                 <button
                   type="submit"
-                  className="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-8  rounded w-max"
+                  className="bg-blue-500 hover:bg-blue-700 text-white md:text-2xl font-bold py-2 px-6 md:py-2 md:px-8 ml-1  rounded w-max"
                 >
                   Next
                 </button>
@@ -451,7 +451,7 @@ function Stage2(props) {
         </div>
       </div>
       <div className="w-full md:w-1/3">
-        <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-8   ">
+        <div className=" drop-shadow-md rounded-xl bg-white h-full md:m-4 m-2 p-4   ">
           <div className="flex justify-center mb-4 ">
             <span className="text-4xl">Team Information</span>
           </div>
@@ -483,6 +483,8 @@ function Stage3(props) {
   //     setSocialLinks([...SocialLinks, ""]);
   //   }
   // }
+  const [showModal, setShowModal] = React.useState(false);
+
   function addSocial() {
     // update memberlist with new member
     if (props.socialDetails.length < 5) {
@@ -501,167 +503,219 @@ function Stage3(props) {
 
   // Correct! This use of <div> is legitimate because div is a valid HTML tag:
   return (
-    <div className="md:flex">
-      <div className="w-full md:w-2/3 ">
-        <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-4 ">
-          <div>
-            <div className="justify-center flex pt-5">
+    <>
+      {showModal ? (
+        <>
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none m-3">
+            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                  <h3 className="text-2xl font-semibold">
+                    Our Legal Agreement
+                  </h3>
+                </div>
+                {/*body*/}
+                <div className="md:flex md:flex-col  mb-4 ">
+                  <div className="  p-4 h-96 overflow-y-scroll">
+                    Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy
+                    text ever since the 1500s,when an unknown printer took a
+                    galley of type Read more ... Ipsum is simply dummy text of
+                    the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s,when
+                    an unknown printer took a galley of type Read more ... Ipsum
+                    is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy
+                    text ever since the 1500s,when an unknown printer took a
+                    galley of type Read more ... Ipsum is simply dummy text of
+                    the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s,when
+                    an unknown printer took a galley of type Read more ... Ipsum
+                    is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy
+                    text ever since the 1500s,when an unknown printer took a
+                    galley of type Read more ... Ipsum is simply dummy text of
+                    the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s,when
+                    an unknown printer took a galley of type Read more ...
+                  </div>
+                </div>
+                {/*footer*/}
+                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    I'd rather Not
+                  </button>
+                  <button
+                    className="bg-[#538EE1]/[0.8] text-white active:bg-[#538EE1] font-bold uppercase text-xs px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => {
+                      setShowModal(false);
+                      props.otherSubmission();
+                    }}
+                  >
+                    Accept and Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+      <div className="md:flex">
+        <div className="w-full md:w-2/3 ">
+          <div className=" drop-shadow-md rounded-xl bg-white h-full m-2 md:m-4 p-2 ">
+            <div className="justify-center flex pt-3">
               <Image src={On3} alt="Hello" />{" "}
             </div>
-          </div>
-          <div className="rounded-xl md:w-4/5 mx-auto bg-[#DAE8FC] mt-6 ">
-            <div className="pt-3 pb-3 px-2">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  props.otherSubmission();
-                }}
-              >
-                <div className=" md:flex md:flex-wrap overflow-hidden">
-                  <div className="md:flex md:flex-col md:w-1/2">
-                    <label className=" mb-2 text-lg  ">
-                      Social Links of Project (if Any){" "}
-                    </label>
-                    {props.socialDetails.map((social, index) => {
-                      return (
-                        <div key={index}>
-                          <input
-                            type="text"
-                            name="Project Name"
-                            value={social}
-                            onChange={(e) => {
-                              e.preventDefault();
-                              props.updateSocialHandler(index, e.target.value);
-                              // call next stage after submission
-                            }}
-                            placeholder="Mysterious Savanah "
-                            className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50  w-4/5 mb-2"
-                          />
-                        </div>
-                      );
-                    })}
-
-                    <div className="flex flex-wrap my-2 justify-end md:mr-5  ">
-                      {props.socialDetails.length < 5 ? (
-                        <div className="flex justify-end mx-2">
-                          <div onClick={addSocial}>
-                            <svg
-                              width="25"
-                              height="31"
-                              viewBox="0 0 46 55"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M26.389 0C27.0856 0 27.6214 0.5775 27.6214 1.265V10.12C27.6214 15.1525 31.6669 19.2775 36.5696 19.305C38.6057 19.305 40.2132 19.3325 41.4455 19.3325C42.2761 19.3325 43.6424 19.305 44.7944 19.305C45.4642 19.305 46 19.855 46 20.5425V42.6525C46 49.4725 40.615 55 33.9441 55H12.6453C5.67967 55 0 49.1975 0 42.0475V12.4025C0 5.5825 5.41176 0 12.0827 0H26.389ZM22.5044 21.3675C21.4059 21.3675 20.495 22.275 20.495 23.4025V28.16H15.887C14.7886 28.16 13.8777 29.0675 13.8777 30.2225C13.8777 31.35 14.7886 32.2575 15.887 32.2575H20.495V37.015C20.495 38.1425 21.4059 39.05 22.5044 39.05C23.6028 39.05 24.4869 38.1425 24.4869 37.015V32.2575H29.1217C30.2201 32.2575 31.131 31.35 31.131 30.2225C31.131 29.0675 30.2201 28.16 29.1217 28.16H24.4869V23.4025C24.4869 22.275 23.6028 21.3675 22.5044 21.3675ZM31.5225 2.49205C31.5225 1.3068 32.9236 0.7183 33.7247 1.57355C36.6208 4.66455 41.6816 10.0683 44.5107 13.0878C45.293 13.9211 44.7197 15.3043 43.5918 15.307C41.3896 15.3153 38.7935 15.307 36.9262 15.2878C33.9631 15.2878 31.5225 12.7825 31.5225 9.74105V2.49205Z"
-                                fill="black"
-                              />
-                            </svg>
+            <div className="rounded-xl md:w-5/6 mx-auto bg-[#DAE8FC] mt-3 p-1 md:p-4 ">
+              <div className="pt-3 pb-3 px-2">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setShowModal(true);
+                  }}
+                >
+                  <div className=" md:flex md:flex-wrap overflow-hidden">
+                    <div className="md:flex md:flex-col md:w-1/2 ">
+                      <label className=" mb-2 text-lg  ">
+                        Social Links of Project (if Any){" "}
+                      </label>
+                      {props.socialDetails.map((social, index) => {
+                        return (
+                          <div key={index}>
+                            <input
+                              type="text"
+                              name="Project Name"
+                              value={social}
+                              onChange={(e) => {
+                                e.preventDefault();
+                                props.updateSocialHandler(
+                                  index,
+                                  e.target.value
+                                );
+                                // call next stage after submission
+                              }}
+                              placeholder="Contact Info"
+                              className="text-lg indent-2 rounded-xl shadow-inner outline-2 outline-slate-50 w-full md:w-4/5 mb-2"
+                            />
                           </div>
-                        </div>
-                      ) : (
-                        <div>
-                          Cannot Add More than {props.socialDetails.length}{" "}
-                          Links
-                        </div>
-                      )}
+                        );
+                      })}
 
-                      {props.socialDetails.length > 1 ? (
-                        <div className="flex justify-end">
-                          <div onClick={removeSocial}>
-                            <svg
-                              width="25"
-                              height="31"
-                              viewBox="0 0 37 41"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M32.3096 14.362C32.7084 14.362 33.0702 14.536 33.3561 14.83C33.6226 15.144 33.7568 15.534 33.7179 15.946C33.7179 16.082 32.652 29.5619 32.0432 35.2358C31.6619 38.7178 29.4173 40.8318 26.0503 40.8898C23.4614 40.9478 20.9308 40.9678 18.4391 40.9678C15.7938 40.9678 13.2068 40.9478 10.6956 40.8898C7.44148 40.8118 5.19489 38.6598 4.8331 35.2358C4.20677 29.5419 3.16031 16.082 3.14086 15.946C3.1214 15.534 3.25367 15.144 3.5221 14.83C3.78663 14.536 4.16787 14.362 4.56856 14.362H32.3096ZM22.561 0.967773C24.3291 0.967773 25.9085 2.20176 26.3656 3.96174L26.6924 5.42173C26.9569 6.61172 27.9878 7.45371 29.1743 7.45371H35.0058C35.7838 7.45371 36.4315 8.0997 36.4315 8.92169V9.68169C36.4315 10.4837 35.7838 11.1497 35.0058 11.1497H1.85923C1.07924 11.1497 0.431519 10.4837 0.431519 9.68169V8.92169C0.431519 8.0997 1.07924 7.45371 1.85923 7.45371H7.69065C8.87522 7.45371 9.90612 6.61172 10.1726 5.42373L10.478 4.05974C10.9526 2.20176 12.5145 0.967773 14.3021 0.967773H22.561Z"
-                                fill="black"
-                              />
-                            </svg>
+                      <div className="flex flex-wrap my-2 justify-end md:mr-5 mr-2  ">
+                        {props.socialDetails.length < 5 ? (
+                          <div className="flex justify-end mx-2 mr-2">
+                            <div onClick={addSocial}>
+                              <svg
+                                width="25"
+                                height="31"
+                                viewBox="0 0 46 55"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M26.389 0C27.0856 0 27.6214 0.5775 27.6214 1.265V10.12C27.6214 15.1525 31.6669 19.2775 36.5696 19.305C38.6057 19.305 40.2132 19.3325 41.4455 19.3325C42.2761 19.3325 43.6424 19.305 44.7944 19.305C45.4642 19.305 46 19.855 46 20.5425V42.6525C46 49.4725 40.615 55 33.9441 55H12.6453C5.67967 55 0 49.1975 0 42.0475V12.4025C0 5.5825 5.41176 0 12.0827 0H26.389ZM22.5044 21.3675C21.4059 21.3675 20.495 22.275 20.495 23.4025V28.16H15.887C14.7886 28.16 13.8777 29.0675 13.8777 30.2225C13.8777 31.35 14.7886 32.2575 15.887 32.2575H20.495V37.015C20.495 38.1425 21.4059 39.05 22.5044 39.05C23.6028 39.05 24.4869 38.1425 24.4869 37.015V32.2575H29.1217C30.2201 32.2575 31.131 31.35 31.131 30.2225C31.131 29.0675 30.2201 28.16 29.1217 28.16H24.4869V23.4025C24.4869 22.275 23.6028 21.3675 22.5044 21.3675ZM31.5225 2.49205C31.5225 1.3068 32.9236 0.7183 33.7247 1.57355C36.6208 4.66455 41.6816 10.0683 44.5107 13.0878C45.293 13.9211 44.7197 15.3043 43.5918 15.307C41.3896 15.3153 38.7935 15.307 36.9262 15.2878C33.9631 15.2878 31.5225 12.7825 31.5225 9.74105V2.49205Z"
+                                  fill="black"
+                                />
+                              </svg>
+                            </div>
                           </div>
-                        </div>
-                      ) : (
-                        <div></div>
-                      )}
-                    </div>
-                  </div>
+                        ) : (
+                          <div></div>
+                        )}
 
-                  <div className="md:flex md:flex-col md:w-1/2 mb-4 ">
-                    <label className=" mb-2 text-xl ">
-                      Our Legal Agreement
-                    </label>
-                    <div className=" drop-shadow-md rounded-xl bg-white p-4">
-                      Ipsum is simply dummy text of the printing and typesetting
-                      industry. Lorem Ipsum has been the industry's standard
-                      dummy text ever since the 1500s,when an unknown printer
-                      took a galley of type Read more ... Ipsum is simply dummy
-                      text of the printing and typesetting industry. Lorem Ipsum
-                      has been the industry's standard dummy text ever since the
-                      1500s,when an unknown printer took a galley of type Read
-                      more ...
+                        {props.socialDetails.length > 1 ? (
+                          <div className="flex justify-end">
+                            <div onClick={removeSocial}>
+                              <svg
+                                width="25"
+                                height="31"
+                                viewBox="0 0 37 41"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M32.3096 14.362C32.7084 14.362 33.0702 14.536 33.3561 14.83C33.6226 15.144 33.7568 15.534 33.7179 15.946C33.7179 16.082 32.652 29.5619 32.0432 35.2358C31.6619 38.7178 29.4173 40.8318 26.0503 40.8898C23.4614 40.9478 20.9308 40.9678 18.4391 40.9678C15.7938 40.9678 13.2068 40.9478 10.6956 40.8898C7.44148 40.8118 5.19489 38.6598 4.8331 35.2358C4.20677 29.5419 3.16031 16.082 3.14086 15.946C3.1214 15.534 3.25367 15.144 3.5221 14.83C3.78663 14.536 4.16787 14.362 4.56856 14.362H32.3096ZM22.561 0.967773C24.3291 0.967773 25.9085 2.20176 26.3656 3.96174L26.6924 5.42173C26.9569 6.61172 27.9878 7.45371 29.1743 7.45371H35.0058C35.7838 7.45371 36.4315 8.0997 36.4315 8.92169V9.68169C36.4315 10.4837 35.7838 11.1497 35.0058 11.1497H1.85923C1.07924 11.1497 0.431519 10.4837 0.431519 9.68169V8.92169C0.431519 8.0997 1.07924 7.45371 1.85923 7.45371H7.69065C8.87522 7.45371 9.90612 6.61172 10.1726 5.42373L10.478 4.05974C10.9526 2.20176 12.5145 0.967773 14.3021 0.967773H22.561Z"
+                                  fill="black"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        ) : (
+                          <div></div>
+                        )}
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="md:flex md:flex-col md:w-1/2 mt-4 mb-4">
-                    <label className=" mb-2 text-xl ">
-                      Other Information ?
-                    </label>
-                    <textarea
-                      type="text"
-                      name="Project Name"
-                      onChange={(e) => {
-                        e.preventDefault();
-                        props.setotherDetails(e.target.value);
-                        // call next stage after submission
-                      }}
-                      rows="4"
-                      placeholder="Anything we left to ask and you would like it
+                    <div className="md:flex md:flex-col md:w-1/2 mt-4 mb-4">
+                      <label className=" mb-2 text-xl ">
+                        Other Information ?
+                      </label>
+                      <textarea
+                        type="text"
+                        name="Project Name"
+                        onChange={(e) => {
+                          e.preventDefault();
+                          props.setotherDetails(e.target.value);
+                          // call next stage after submission
+                        }}
+                        rows="4"
+                        placeholder="Anything we left to ask and you would like it
                       to be included "
-                      className="text-lg pl-3 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
-                    />
+                        className="text-lg pl-3 rounded-xl shadow-inner outline-2 outline-slate-50 w-full"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="justify-center flex pt-5">
-                  <button
-                    type="button"
-                    onClick={props.prevStage}
-                    className="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-8  rounded w-max"
-                  >
-                    Previous
-                  </button>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold py-2 px-8  rounded w-max ">
-                    Submit
-                  </button>
-                </div>
-              </form>
+                  <div className="justify-center flex pt-9 pb-2 md:pb-4">
+                    <button
+                      type="button"
+                      onClick={props.prevStage}
+                      className="bg-blue-500 hover:bg-blue-700 text-white  md:text-2xl font-bold py-2 px-6 md:py-2 md:px-8  mr-1 rounded w-max"
+                    >
+                      Previous
+                    </button>
+
+                    <button
+                      type="submit"
+                      className="bg-blue-500 hover:bg-blue-700 text-white md:text-2xl font-bold py-2 px-6 md:py-2 md:px-8 ml-1  rounded w-max"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full md:w-1/3">
+          <div className=" drop-shadow-md rounded-xl bg-white h-full  m-2 md:m-4 p-4 md:p-8">
+            <div className="flex justify-center mb-4 ">
+              <span className="text-4xl">Our Assurance</span>
+            </div>
+            <div className=" mb-4">
+              <Image src={Stage1Pic} alt="Hello" />
+            </div>
+            <div>
+              <span>
+                Guidlines and other Information, Lorem Ipsum is simply dummy
+                text of the printing and typesetting industry. Lorem Ipsum has
+                been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it
+                to make a type specimen bookok a galley of type and scrambled it
+                to make a type specimen book
+              </span>
             </div>
           </div>
         </div>
       </div>
-      <div className="w-full md:w-1/3">
-        <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-8  ">
-          <div className="flex justify-center mb-4 ">
-            <span className="text-4xl">Our Assurance</span>
-          </div>
-          <div className=" mb-4">
-            <Image src={Stage1Pic} alt="Hello" />
-          </div>
-          <div>
-            <span>
-              Guidlines and other Information, Lorem Ipsum is simply dummy text
-              of the printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since the 1500s, when an
-              unknown printer took a galley of type and scrambled it to make a
-              type specimen bookok a galley of type and scrambled it to make a
-              type specimen book
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 

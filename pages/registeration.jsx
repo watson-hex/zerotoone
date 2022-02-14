@@ -6,7 +6,7 @@ import axios from "../utilities/axios";
 import Mainlayout from "../common/Mainlayout";
 
 export default function Registeration() {
-  const [Stage, setStage] = useState(0);
+  const [Stage, setStage] = useState(2);
 
   const [id, setid] = useState(undefined);
 
