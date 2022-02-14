@@ -50,14 +50,14 @@ function Stage1(props) {
                         );
                       }}
                       placeholder="Mysterious Savanah "
-                      className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50  w-4/5"
+                      className="text-lg pl-2 pr-2 rounded-xl shadow-inner outline-2 outline-slate-50  w-4/5"
                     />
                   </div>
 
                   <div className="flex flex-col w-full md:w-1/2 mb-4 ">
                     <label className=" mb-2 text-xl ">Project Stage</label>
                     <select
-                      className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                      className="text-lg pl-2 pr-2 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
                       name="stage"
                       onChange={(e) => {
                         props.updateProjectHandler(
@@ -91,10 +91,10 @@ function Stage1(props) {
                       }}
                       rows="4"
                       placeholder="Mysterious Savanah "
-                      className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                      className="text-lg pl-2 pr-2 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
                     />
                   </div>
-                  <div className="flex flex-col w-full md:w-1/2 mb-4">
+                  <div className="flex flex-col w-full md:w-1/2 mb-4 md:mt-2">
                     <div>
                       <div className="mb-8">
                         <label className=" mb-2 text-xl ">Started On ?</label>
@@ -110,7 +110,7 @@ function Stage1(props) {
                             );
                           }}
                           placeholder="DD/MM/YYYY"
-                          className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50  w-4/5"
+                          className="text-lg pl-2 pr-2  rounded-xl shadow-inner outline-2 outline-slate-50  w-4/5"
                         />
                       </div>
                       <div>
@@ -129,7 +129,7 @@ function Stage1(props) {
                             );
                           }}
                           placeholder={"3 months"}
-                          className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50  w-4/5"
+                          className="text-lg pl-2 pr-2 rounded-xl shadow-inner outline-2 outline-slate-50  w-4/5"
                         />
                       </div>
                     </div>
@@ -150,7 +150,7 @@ function Stage1(props) {
                         );
                       }}
                       placeholder="Innovation, heroku, tech  "
-                      className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                      className="text-lg pl-2 pr-2 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
                     />
                   </div>
 
@@ -180,16 +180,17 @@ function Stage1(props) {
                       </div>
                     </label>
                   </div> */}
-                  <div className="flex flex-col relative md:w-1/2 mt-6 mb-4 pb-2 ">
+                  <div className="flex flex-col relative md:w-1/2 mt-6 mb-4 pb-2 md:pt-3 ">
                     <label className="flex absolute items-center cursor-pointer">
                       <div className="relative">
                         <input
                           type="checkBox"
                           id="toggleB"
                           className="sr-only"
+                          checked={props.projectDetails.hidden}
                           name="hidden"
                           value={props.projectDetails.hidden}
-                          onClick={(e) => {
+                          onChange={(e) => {
                             props.updateProjectHandler(
                               [e.target.name],
                               e.target.checked
@@ -199,8 +200,8 @@ function Stage1(props) {
                         <div className="block bg-gray-100 w-12 h-6 rounded-full"></div>
                         <div className="dot absolute drop-shadow-lg left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
                       </div>
-                      <div className="whitespace-normal text-gray-700 font-small w-max text-xs md:text-lg">
-                        {props.projectDetails.hidden
+                      <div className="whitespace-normal text-gray-700 font-small w-max text-xs md:text-lg md:pl-2">
+                        {!props.projectDetails.hidden
                           ? " Visible to all "
                           : "Hidden from community "}
                         <span className="text-sm"> &nbsp; (optional)</span>
@@ -295,7 +296,7 @@ function Stage2(props) {
             <div className="rounded-xl md:w-5/6 mx-auto bg-[#DAE8FC] mt-6 p-2 md:p-1  ">
               <div className="md:flex md:flex-col md:justify-center w-full md:w-2/3 mx-auto justify-center">
                 {props.membersDetails.map((member, index) => {
-                  console.log(member);
+                  console.log(member + "hello");
                   return (
                     <div key={index} className="mt-2 mb-2">
                       <div className="text-xl pb-1">
@@ -326,7 +327,9 @@ function Stage2(props) {
                             name="emailID"
                             placeholder="Email"
                             required
-                            value={member.emailID}
+                            value={
+                              String(member) === "[object Object]" ? "" : member
+                            }
                             onChange={(e) => {
                               e.preventDefault();
 
@@ -416,17 +419,19 @@ function Stage2(props) {
                       type="checkBox"
                       id="toggleB"
                       className="sr-only"
+                      checked={props.onboardingDetail}
                       name="onboarding"
-                      value={props.onBoardingDetail}
-                      onClick={(e) => {
+                      value={props.onboardingDetail}
+                      onChange={(e) => {
+                        console.log(e.target.checked);
                         props.setonboardingDetail(e.target.checked);
                       }}
                     />
                     <div className="block bg-gray-100 w-12 h-6 rounded-full"></div>
                     <div className="dot absolute drop-shadow-lg left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
                   </div>
-                  <div className="whitespace-normal text-gray-700 font-small w-max">
-                    {props.onBoardingDetail ? "Onboarding" : "Not Onboarding"}
+                  <div className="whitespace-normal text-gray-700 font-small w-max md:pl-2">
+                    {props.onboardingDetail ? "Onboarding" : "Not Onboarding"}
                   </div>
                 </label>
               </div>
@@ -592,7 +597,8 @@ function Stage3(props) {
                           <div key={index}>
                             <input
                               type="text"
-                              name="Project Name"
+                              name="Social Ids"
+                              required
                               value={social}
                               onChange={(e) => {
                                 e.preventDefault();
@@ -726,10 +732,10 @@ function Stage4(props) {
       <div className="mx-auto drop-shadow-md rounded-xl bg-white md:w-3/5 m-10 p-2 pb-0 h-full">
         <div>
           <div className="flex flex-col justify-center">
-            <div className="flex justify-center text-3xl m-5 mt-0 ">
+            <div className="text-center  text-2xl md:text-3xl m-5 mt-5 ">
               Submitted Succesfully
             </div>
-            <div className="flex justify-center m-5">
+            <div className="flex justify-center m-2">
               <Image src={Stage4Pic} alt="Hello" />
             </div>
             <div className="flex justify-center text-xl m-5 mb-1">
@@ -759,18 +765,35 @@ function Stage4(props) {
 function Error(props) {
   // Correct! This use of <div> is legitimate because div is a valid HTML tag:
   return (
-    <div>
-      <div className="mx-auto drop-shadow-md rounded-xl bg-white h-full w-3/5 m-10 p-10  pb-0 h-full">
+    <div className="m-3">
+      <div className="mx-auto drop-shadow-md rounded-xl bg-white md:w-3/5 m-10 p-2 pb-0 h-full">
         <div>
-          <div className="flex flex-col justify-items-center">
-            <div className="flex justify-center text-5xl m-5 mt-0 ">
-              Submission Unsuccesful
+          <div className="flex flex-col justify-center">
+            <div className="text-center  text-2xl md:text-3xl m-5 mt-5 ">
+              Submission Unsuccesfull
             </div>
 
-            <div className="flex justify-center text-xl mb-6 m-5 mt-1">
-              Your Project Details were not submitted.
+            <div className="text-center text-xl m-5 mb-1">Don't Worry</div>
+            <div className="text-center text-xl mb-6 m-5 mt-1">
+              Do Contact us at the provided email to let us know
             </div>
-            <div className="flex justify-end text-xl mt-6 mb-10">
+            <div className="flex justify-center text-xl mb-6 ">
+              Submit another &nbsp;
+              <div className=" underline ">
+                <Link href="/registration " passHref>
+                  Home
+                </Link>
+              </div>
+            </div>
+            <div className="flex justify-center text-xl mb-6 ">
+              Return to&nbsp;
+              <div className=" underline ">
+                <Link href="/ " passHref>
+                  Home
+                </Link>
+              </div>
+            </div>
+            <div className="flex justify-end text-xl mt-6 mb-3">
               <Image src={Email} alt="Hello" />
               ecell@iiitd.ac.in
             </div>

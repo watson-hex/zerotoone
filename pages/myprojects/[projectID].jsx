@@ -13,6 +13,7 @@ import Tag from "../../common/Tag";
 import Arrow from "../../public/assets/svg/arrow.svg";
 import axios from "../../utilities/axios";
 import Image from "next/image";
+import Loading from "../../components/Loading";
 
 export default function ProjectPage(props) {
   const [Data, setData] = useState(undefined);
@@ -335,7 +336,7 @@ export default function ProjectPage(props) {
       </>
     );
   } else {
-    return <div>loading</div>;
+    return <Loading />;
   }
 }
 

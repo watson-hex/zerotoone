@@ -41,16 +41,24 @@ export default function Registeration() {
       ...prevState,
       [target]: value,
     }));
+    console.log(projectDetails.hidden + " is hidden");
   };
 
   const projectSubmission = () => {
     //axios calling with projectDetails as payload
-    axios.post("/ecell/mine/", projectDetails).then((res) => {
-      console.log(res);
-      setid(res.data.id);
-    });
-
-    nextStage();
+    axios
+      .post("/ecell/mine/", projectDetails)
+      .then((res) => {
+        console.log(res);
+        setid(res.data.id);
+      })
+      .then(() => {
+        nextStage();
+      })
+      .catch((err) => {
+        console.log(err);
+        setStage(4);
+      });
   };
 
   const [membersDetails, setmembersDetails] = useState([""]);
@@ -72,16 +80,23 @@ export default function Registeration() {
   const [onboardingDetail, setonboardingDetail] = useState(false);
 
   const memberSubmission = () => {
-    axios.patch("/ecell/mine/", {
-      owners: membersDetails,
-      onBoarding: onboardingDetail,
-      form_filling_stage: 2,
+    console.log(onboardingDetail + "hello");
+    axios
+      .patch("/ecell/mine/", {
+        owners: membersDetails,
+        onboarding: onboardingDetail,
+        form_filling_stage: 2,
 
-      id: id,
-    });
-
+        id: id,
+      })
+      .then(() => {
+        nextStage();
+      })
+      .catch((err) => {
+        console.log(err);
+        setStage(4);
+      });
     //axios calling with projectDetails as payload
-    nextStage();
   };
 
   const [socialDetails, setsocialDetails] = useState([""]);
@@ -111,9 +126,12 @@ export default function Registeration() {
 
         id: id,
       })
-      .then((res) => {
-        console.log(res);
-        setStage(3);
+      .then(() => {
+        nextStage();
+      })
+      .catch((err) => {
+        console.log(err);
+        setStage(4);
       });
     // nextStage();
   };
@@ -135,7 +153,7 @@ export default function Registeration() {
           updateMemberHandler={updateMemberHandler}
           nextStage={nextStage}
           prevStage={prevStage}
-          onBoardingDetail={onboardingDetail}
+          onboardingDetail={onboardingDetail}
           setonboardingDetail={setonboardingDetail}
           memberSubmission={memberSubmission}
         />
