@@ -18,25 +18,30 @@ const Stage1 = (props) => {
       </div>
       {/*body*/}
       <div className="md:flex md:flex-col ">
-        <div className="p-4 h-[18rem] md:h-[28rem] lg:h-[38rem] overflow-y-scroll">
-          Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the
-          1500s,when an unknown printer took a galley of type Read more ...
-          Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the
-          1500s,when an unknown printer took a galley of type Read more ...
-          Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the
-          1500s,when an unknown printer took a galley of type Read more ...
-          Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the
-          1500s,when an unknown printer took a galley of type Read more ...
-          Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the
-          1500s,when an unknown printer took a galley of type Read more ...
-          Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the
-          1500s,when an unknown printer took a galley of type Read more ...
+        <div className="p-4 h-[18rem] md:h-[28rem] lg:h-[28rem] overflow-y-scroll">
+          TNC-1 To sign in on a platform Member Conduct: Do not attempt to
+          obtain unauthorized access to the services or to Oath’s servers,
+          systems, networks, or data. Do not organize, promote hate speech. It’s
+          unacceptable to attack a person or a community based on attributes
+          such as their race, ethnicity, national origin, sex, gender, sexual
+          orientation, religious affiliation, disabilities, etc. Do not make
+          available any content that you do not have the right to make available
+          or that infringes any patent, trademark, copyright, or other
+          proprietary rights. Do not post content containing advertisements or
+          other commercial solicitations without our prior written permission.
+          Do not post/share any abusive, harassing, defamatory, vulgar, invasive
+          to another’s privacy. Do not copy or reproduce or share any idea or
+          information outside the community Who can use this Platform: All the
+          students who are enrolled in any course and programme at IIITD can
+          access the platform. Termination Clause: On becoming aware of any
+          potential violation of the above-mentioned Terms&Conditions, we
+          reserve all the rights(but shall have no obligation) to decide whether
+          Content complied with the content requirements set out in these terms
+          and may remove such content and/or terminate a User’s access for
+          uploading content which is in violation of these terms at any time,
+          without any prior notice. Any default arising out of the covenants of
+          this agreement shall be prosecuted before competent authorities and be
+          liable for legal consequences.
         </div>
       </div>
       {/*footer*/}

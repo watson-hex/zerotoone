@@ -21,6 +21,8 @@ export default function ProjectPage(props) {
 
   const [showModal, setShowModal] = React.useState(false);
   const [modalDetail, setmodalDetail] = React.useState("");
+  const [modalField, setmodalField] = React.useState("");
+  const [modalValue, setmodalValue] = React.useState("");
 
   const router = useRouter();
   var projectID = undefined;
@@ -45,14 +47,30 @@ export default function ProjectPage(props) {
     }
   });
 
-  const [Tags, setTags] = useState(["project", "machinelearning"]);
-  const [Members, setMembers] = useState([
-    { name: "Yashwardhan", link: "atom" },
-    { name: "Yashwardhan", link: "atom" },
-    { name: "Yashwardhan", link: "atom" },
-    { name: "Yashwardhan", link: "atom" },
-    { name: "Yashwardhan", link: "atom" },
-  ]);
+  // updater function for Data
+  const updateData = (target, value) => {
+    setData((prevState) => ({
+      ...prevState,
+      [target]: value,
+    }));
+  };
+
+  //update field function
+  const updateField = (field, value) => {
+    axios
+      .patch("/ecell/mine/", {
+        name: value,
+        id: projectID,
+      })
+      .then((res) => {
+        updateData(field, value);
+        setShowModal(false);
+      })
+      .catch((err) => {
+        console.log("error aaya");
+        console.log(err);
+      });
+  };
 
   if (Data !== undefined) {
     var socials = JSON.parse(Data.social_links);
@@ -78,7 +96,7 @@ export default function ProjectPage(props) {
                       }}
                     >
                       <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                        ×
+                        X
                       </span>
                     </button>
                   </div>
@@ -86,6 +104,9 @@ export default function ProjectPage(props) {
                   <div className="relative p-6 flex-auto">
                     <div className="flex items-center border-b border-[#538EE1] py-2">
                       <input
+                        onChange={(e) => {
+                          setmodalValue(e.target.value);
+                        }}
                         className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                         type="text"
                         placeholder="input here"
@@ -105,7 +126,9 @@ export default function ProjectPage(props) {
                     <button
                       className="bg-[#538EE1]/[0.8] text-white active:bg-[#538EE1] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
-                      onClick={() => setShowModal(false)}
+                      onClick={() => {
+                        updateField(modalField, modalValue);
+                      }}
                     >
                       Save Changes
                     </button>
@@ -136,6 +159,7 @@ export default function ProjectPage(props) {
                       alt="Hello"
                       onClick={() => {
                         setShowModal(true);
+                        setmodalField("name");
                         setmodalDetail("name");
                       }}
                     />
@@ -143,7 +167,7 @@ export default function ProjectPage(props) {
                 </div>
               </div>
             </div>
-            <div className="md:mx-0 md:w-1/2 min-w-1/2 pl-4">
+            <div className="md:mx-0 md:w-1/2 min-w-1/2 md:pl-4">
               <div className="flex flex-wrap">
                 <div className="  md:mr-0 md:mt-0 md:mb-5 md:mr-0 ">
                   <div className=" drop-shadow-md rounded-xl bg-white p-2">
@@ -255,25 +279,27 @@ export default function ProjectPage(props) {
                   </div>
                 </div>
                 <div className="">
-                  <div className="flex flex-wrap justify-around rounded-t-xl w-full pb-0 pt-6   ">
+                  <div className="flex  flex-wrap justify-around rounded-t-xl w-full pb-0 pt-6    ">
                     <div className=" flex flex-col text-[#6A98BF] font-semibold ">
-                      <span className="my-auto text-lg">Started On:</span>
-                      <span className="my-auto  text-lg text-black">
+                      <span className="my-auto  text-sm md:text-lg">
+                        Started On:
+                      </span>
+                      <span className="my-auto  text-sm md:text-lg text-black">
                         {Data.startedOn ? Data.startedOn : "Once"}
                       </span>
                     </div>
                     <div className=" flex flex-col text-[#6A98BF] font-semibold ">
-                      <span className="my-auto text-lg">
+                      <span className="my-auto text-sm md:text-lg">
                         Tentative Completion in:
                       </span>
-                      <span className="my-auto  text-lg text-black">
+                      <span className="my-auto  text-sm md:text-lg text-black">
                         {Data.duration ? Data.duration : "Once"}
                       </span>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div className="flex mt-12 flex-wrap justify-center rounded-t-xl ">
+                  <div className="flex mt-4 md:mt-12 flex-wrap justify-center rounded-t-xl ">
                     {socials.map((user, index) => (
                       <div key={index} className="flex flex-wrap px-2 ">
                         <Link href={"https://" + user} passHref>
@@ -306,11 +332,14 @@ export default function ProjectPage(props) {
                     </div>
                   </div>
                 </div>
-                <div className="m-5 grid grid-cols-3  gap-3">
+                <div className="m-5 flex flex-wrap md:grid md:grid-cols-3  md:gap-3">
                   {Data.owner_details.map((user, index) => (
-                    <div key={index} className=" justify-between rounded-t-xl ">
+                    <div
+                      key={index}
+                      className=" justify-between rounded-t-xl p-1 "
+                    >
                       <div className="flex flex-col justify-center">
-                        <span className="my-auto mx-auto">
+                        <span className="my-auto mx-auto text-sm md:text-lg">
                           {user.First_Name + " " + user.Last_Name}
                         </span>
                         <div className="flex flex-wrap justify-center">
