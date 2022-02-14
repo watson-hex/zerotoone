@@ -20,14 +20,14 @@ function Stage1(props) {
   return (
     <div className="md:flex ">
       <div className="w-full md:w-2/3 ">
-        <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-4 md:p-0 ">
+        <div className=" drop-shadow-md rounded-xl bg-white h-full m-2 md:m-4 pb-5 d:pb-0  ">
           <div>
-            <div className="justify-center flex pt-5">
+            <div className="justify-center flex pt-5 mx-4">
               <Image src={On1} alt="Hello" />{" "}
             </div>
           </div>
-          <div className="rounded-xl md:w-4/5 w-full m-auto bg-[#DAE8FC] mt-6 ">
-            <div className="pt-3 pb-3">
+          <div className="rounded-xl mx-2 md:w-4/5  md:mx-auto h-3/4  bg-[#DAE8FC] mt-6 ">
+            <div className="pt-5 pb-3">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -68,9 +68,9 @@ function Stage1(props) {
                       required
                       value={props.projectDetails.stage}
                     >
-                      <option defaultChecked>Yes</option>
-                      <option>No</option>
-                      <option>Maybe</option>
+                      <option defaultChecked>Ideation</option>
+                      <option>Prototyping</option>
+                      <option>MVP (Minimum Viable Product)</option>
                     </select>
                   </div>
 
@@ -180,7 +180,7 @@ function Stage1(props) {
                       </div>
                     </label>
                   </div> */}
-                  <div className="flex flex-col relative w-1/2 mt-4 mb-4 p-2 ">
+                  <div className="flex flex-col relative md:w-1/2 mt-6 mb-4 pb-2 ">
                     <label className="flex absolute items-center cursor-pointer">
                       <div className="relative">
                         <input
@@ -222,7 +222,7 @@ function Stage1(props) {
         </div>
       </div>
       <div className="w-full md:w-1/3">
-        <div className=" drop-shadow-md rounded-xl bg-white h-full m-4 p-8  ">
+        <div className=" drop-shadow-md rounded-xl bg-white h-full md:m-4 md:p-8 m-2 p-3 ">
           <div className="flex justify-center mb-4 ">
             <span className="text-4xl">Project Information</span>
           </div>

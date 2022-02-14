@@ -6,7 +6,6 @@ import backend from "../env";
 import axios from "../utilities/axios";
 import Loading from "./Loading";
 
-import ReactDOM from "react-dom";
 import Modal from "react-modal";
 
 const Stage1 = (props) => {
@@ -15,8 +14,8 @@ const Stage1 = (props) => {
       <span className=" text-3xl "> Terms and Conditions </span>
       <div className="overflow-scroll h-[30rem]">
         TNC-1 To sign in on a platform Member Conduct: Do not attempt to obtain
-        unauthorized access to the services or to Oath's servers, systems,
-        networks, or data. Do not organize, promote hate speech. It's
+        unauthorized access to the services or to Oaths servers, systems,
+        networks, or data. Do not organize, promote hate speech. Its
         unacceptable to attack a person or a community based on attributes such
         as their race, ethnicity, national origin, sex, gender, sexual
         orientation, religious affiliation, disabilities, etc. Do not make
@@ -25,18 +24,18 @@ const Stage1 = (props) => {
         rights. Do not post content containing advertisements or other
         commercial solicitations without our prior written permission. Do not
         post/share any abusive, harassing, defamatory, vulgar, invasive to
-        another's privacy. Do not copy or reproduce or share any idea or
+        anothers privacy. Do not copy or reproduce or share any idea or
         information outside the community Who can use this Platform: All the
         students who are enrolled in any course and programme at IIITD can
         access the platform. Termination Clause: On becoming aware of any
-        potential violation of the above-mentioned Terms&Conditions, we reserve
-        all the rights(but shall have no obligation) to decide whether Content
-        complied with the content requirements set out in these terms and may
-        remove such content and/or terminate a User's access for uploading
-        content which is in violation of these terms at any time, without any
-        prior notice. Any default arising out of the covenants of this agreement
-        shall be prosecuted before competent authorities and be liable for legal
-        consequences.
+        potential violation of the above-mentioned Terms andConditions, we
+        reserve all the rights(but shall have no obligation) to decide whether
+        Content complied with the content requirements set out in these terms
+        and may remove such content and/or terminate a Users access for
+        uploading content which is in violation of these terms at any time,
+        without any prior notice. Any default arising out of the covenants of
+        this agreement shall be prosecuted before competent authorities and be
+        liable for legal consequences.
       </div>
       <div className="flex items-center justify-end p-6 pb-0 border-t border-solid border-blueGray-200 rounded-b">
         <button
@@ -179,7 +178,7 @@ class FormSignIn extends React.Component {
               ) : (
                 <>
                   <span className="text-3xl text-center p-3">
-                    Let's get you started
+                    Lets get you started
                   </span>
                   <form
                     className="px-6 pt-4 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
