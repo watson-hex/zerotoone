@@ -93,7 +93,7 @@ export default function Mainlayout({
             visibility
           />
         </header>
-        <main className=" bg-sky-50">
+        <main className=" bg-sky-50" id="mylayout">
           <Cardstoshow.Provider value={filteredData}>
             <main>{children}</main>
           </Cardstoshow.Provider>

@@ -12,7 +12,6 @@ import axios from "../../utilities/axios";
 
 export default function Home() {
   // useeffect with axios to get data from the server
-  
 
   const theme = useContext(Cardstoshow);
   return (
@@ -22,7 +21,7 @@ export default function Home() {
           <Image src={MainArrow} alt="Hello" />
         </div>
 
-        <div className="justify-end text-4xl">My Projects</div>
+        <div className="justify-end text-4xl  text-indigo-800">My Projects</div>
         <div className="m"></div>
       </div>
       <div className=" bg-sky-50 p-0">

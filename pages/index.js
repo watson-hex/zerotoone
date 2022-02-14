@@ -30,7 +30,7 @@ export default function Home() {
         </div>
 
         {/* the lower part is responsive */}
-        <div className=" flex w-full md:w-2/5 justify-center ">
+        <div className=" flex w-full md:w-2/5 justify-end ">
           <div className="m-3 drop-shadow-md rounded-3xl bg-white p-4 md:w-5/6">
             <div className="mb-4 flex justify-center ">
               <Image src={Cardheading} alt="Picture of the author" />

@@ -17,7 +17,9 @@ export default function Home() {
         <div className="" onClick={() => Router.back()}>
           <Image src={MainArrow} alt="Hello" />
         </div>
-        <div className="justify-end text-4xl">My Bookmarks</div>
+        <div className="justify-end text-4xl  text-indigo-800">
+          My Bookmarks
+        </div>
         <div className=""></div>
       </div>
       <div className=" bg-sky-50 p-0">
