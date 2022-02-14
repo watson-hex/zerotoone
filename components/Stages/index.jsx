@@ -199,7 +199,7 @@ function Stage1(props) {
                         <div className="block bg-gray-100 w-12 h-6 rounded-full"></div>
                         <div className="dot absolute drop-shadow-lg left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
                       </div>
-                      <div className="whitespace-normal text-gray-700 font-small w-max">
+                      <div className="whitespace-normal text-gray-700 font-small w-max text-xs md:text-lg">
                         {props.projectDetails.hidden
                           ? " Visible to all "
                           : "Hidden from community "}

@@ -10,44 +10,48 @@ import Modal from "react-modal";
 
 const Stage1 = (props) => {
   return (
-    <div className=" w-full">
-      <span className=" text-3xl "> Terms and Conditions </span>
-      <div className="overflow-scroll h-[30rem]">
-        TNC-1 To sign in on a platform Member Conduct: Do not attempt to obtain
-        unauthorized access to the services or to Oaths servers, systems,
-        networks, or data. Do not organize, promote hate speech. Its
-        unacceptable to attack a person or a community based on attributes such
-        as their race, ethnicity, national origin, sex, gender, sexual
-        orientation, religious affiliation, disabilities, etc. Do not make
-        available any content that you do not have the right to make available
-        or that infringes any patent, trademark, copyright, or other proprietary
-        rights. Do not post content containing advertisements or other
-        commercial solicitations without our prior written permission. Do not
-        post/share any abusive, harassing, defamatory, vulgar, invasive to
-        anothers privacy. Do not copy or reproduce or share any idea or
-        information outside the community Who can use this Platform: All the
-        students who are enrolled in any course and programme at IIITD can
-        access the platform. Termination Clause: On becoming aware of any
-        potential violation of the above-mentioned Terms andConditions, we
-        reserve all the rights(but shall have no obligation) to decide whether
-        Content complied with the content requirements set out in these terms
-        and may remove such content and/or terminate a Users access for
-        uploading content which is in violation of these terms at any time,
-        without any prior notice. Any default arising out of the covenants of
-        this agreement shall be prosecuted before competent authorities and be
-        liable for legal consequences.
+    <>
+      {/*content*/}
+      {/*header*/}
+      <div className="flex items-start justify-between pt-3 border-b border-solid border-blueGray-200 rounded-t">
+        <h3 className="text-3xl font-semibold mb-2">Our Legal Agreement</h3>
       </div>
-      <div className="flex items-center justify-end p-6 pb-0 border-t border-solid border-blueGray-200 rounded-b">
+      {/*body*/}
+      <div className="md:flex md:flex-col ">
+        <div className="p-4 h-[18rem] md:h-[28rem] lg:h-[38rem] overflow-y-scroll">
+          Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the
+          1500s,when an unknown printer took a galley of type Read more ...
+          Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the
+          1500s,when an unknown printer took a galley of type Read more ...
+          Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the
+          1500s,when an unknown printer took a galley of type Read more ...
+          Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the
+          1500s,when an unknown printer took a galley of type Read more ...
+          Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the
+          1500s,when an unknown printer took a galley of type Read more ...
+          Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the
+          1500s,when an unknown printer took a galley of type Read more ...
+        </div>
+      </div>
+      {/*footer*/}
+      <div className="flex items-center justify-end pt-6 pr-6 border-t border-solid border-blueGray-200 rounded-b">
         <button
-          className="bg-[#538EE1]/[0.8] text-white active:bg-[#538EE1] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-          onClick={props.handleNextInternal}
-          type="submit"
-          value="Submit"
+          className="bg-[#538EE1]/[0.8] text-white active:bg-[#538EE1] font-bold uppercase text-xs px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+          type="button"
+          onClick={() => {
+            props.handleNextInternal();
+          }}
         >
-          Agree
+          Accept and Submit
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -73,9 +73,9 @@ export default function Header(props) {
           onClick={() => {
             setActive(false);
           }}
-          className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto"
+          className=" lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto"
         >
-          <Link href="/registeration">
+          <Link href="/registration">
             <a className=" text-indigo-800 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:text-xl ">
               Add Project
             </a>
