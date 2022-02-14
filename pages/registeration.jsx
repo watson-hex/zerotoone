@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
+import {useRouter} from "next/router";
+import React, {useState, useEffect, useContext} from "react";
 
 import { Stage1, Stage2, Stage3, Stage4, Error } from "../components/Stages";
+import {LoginContext} from "../utilities/auth";
 
 import axios from "../utilities/axios";
 import Mainlayout from "../common/Mainlayout";
 
 export default function Registeration() {
+
   const [Stage, setStage] = useState(0);
 
   const [id, setid] = useState(undefined);
+
+
 
   // update Stage value by 1 also prevent defaults
 
@@ -117,6 +122,12 @@ export default function Registeration() {
       });
     // nextStage();
   };
+
+  const isAuthenticated = useContext(LoginContext);
+  const router = useRouter();
+  if (!isAuthenticated) {
+    router.push("/403");
+  }
 
   return (
     <div className="">
