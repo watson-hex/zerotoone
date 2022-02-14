@@ -1,287 +1,364 @@
-
-import React from 'react'
+import React from "react";
 import PropTypes from "prop-types";
-import {Modal} from "react-bootstrap";
-import Form from 'react-bootstrap/Form'
+// import { Modal } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 import backend from "../env";
 import axios from "../utilities/axios";
 import Loading from "./Loading";
 
+import ReactDOM from "react-dom";
+import Modal from "react-modal";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
+Modal.setAppElement("#mylayout");
 class FormSignIn extends React.Component {
-    static propTypes = {
-        emailId:PropTypes.string.isRequired,
-        firstName:PropTypes.string.isRequired,
-        lastName:PropTypes.string.isRequired,
-        onSubmit:PropTypes.func,
+  static propTypes = {
+    emailId: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onSubmit: undefined,
+  };
+
+  constructor(props) {
+    super(props);
+    this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
+    this.handleChangeLastName = this.handleChangeLastName.bind(this);
+    this.handleChangeDegree = this.handleChangeDegree.bind(this);
+    this.handleChangeCourse = this.handleChangeCourse.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.state = {
+      FirstName: this.props.firstName,
+      LastName: this.props.lastName,
+      email: this.props.emailId,
+      degree: "",
+      course: "",
+      isLoading: false,
+      currentModal: true,
+    };
+  }
+
+  // noinspection JSCheckFunctionSignatures
+  shouldComponentUpdate() {
+    return true;
+  }
+
+  handleChangeFirstName(e) {
+    this.setState({ FirstName: e.target.value });
+  }
+
+  handleChangeLastName(e) {
+    this.setState({ LastName: e.target.value });
+  }
+
+  handleChangeDegree(e) {
+    this.setState({ degree: e.target.value });
+  }
+
+  handleChangeCourse(e) {
+    this.setState({ course: e.target.value });
+  }
+
+  handleCloseModal() {
+    this.setState({
+      currentModal: false,
+    });
+  }
+
+  handleSubmit(e) {
+    this.handleCloseModal;
+    this.setState({ isLoading: true });
+
+    let payload = {
+      First_Name: this.state.FirstName,
+      Last_Name: this.state.LastName,
+      degree: this.state.degree,
+      course: this.state.course,
     };
 
-    static defaultProps = {
-      onSubmit: undefined
-    };
+    axios.post(backend + "connect/profile/", payload).then((res) => {
+      localStorage.setItem("id", res.data.id);
+      this.props.onSubmit();
+    });
 
-    constructor(props) {
-        super(props);
-        this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
-        this.handleChangeLastName = this.handleChangeLastName.bind(this);
-        this.handleChangeDegree = this.handleChangeDegree.bind(this);
-        this.handleChangeCourse = this.handleChangeCourse.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-
-        this.state = {
-            FirstName: this.props.firstName,
-            LastName:this.props.lastName,
-            email: this.props.emailId,
-            degree: '',
-            course:'',
-            isLoading: false,
-            currentModal:true
-        }
-    }
-
-    // noinspection JSCheckFunctionSignatures
-    shouldComponentUpdate () {
-        return true;
-    }
-
-    handleChangeFirstName(e) {
-        this.setState({ FirstName: e.target.value })
-    }
-
-    handleChangeLastName(e) {
-        this.setState({ LastName: e.target.value })
-    }
-
-    handleChangeDegree(e) {
-        this.setState({ degree: e.target.value })
-    }
-
-    handleChangeCourse(e) {
-        this.setState({ course: e.target.value })
-    }
-
-    handleCloseModal() {
-        this.setState({
-            currentModal: false,
-        })
-    }
-
-    handleSubmit(e) {
-        this.handleCloseModal
-        this.setState({isLoading: true})
-
-        let payload = {
-            First_Name :this.state.FirstName,
-            Last_Name :this.state.LastName,
-            degree :this.state.degree,
-            course :this.state.course,
-        }
-
-        axios.post(backend + "connect/profile/", payload)
-            .then((res) => {
-                localStorage.setItem("id", res.data.id)
-            this.props.onSubmit()
-          })
-
-
-        this.setState({
-            FirstName: '',
-            LastName:'',
-            degree: '',
-            course:''
-        })
-        e.preventDefault();
-
-    }
+    this.setState({
+      FirstName: "",
+      LastName: "",
+      degree: "",
+      course: "",
+    });
+    e.preventDefault();
+  }
 
   render() {
-    if (this.state.isLoading)
-        return <Loading />
+    if (this.state.isLoading) return <Loading />;
     else
-        return (
-            <Modal
-                aria-labelledby="example-custom-modal-styling-title"
-                backdrop="static"
-                dialogClassName="modal-100w"
-                handleClose={this.handleCloseModal.bind(this)}
-                keyboard={false}
-                show={this.state.currentModal}
+      return (
+        <div>
+          <Modal
+            isOpen={true}
+            // onAfterOpen={afterOpenModal}
+            // onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <form
+              className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
+              action="#"
             >
-                <Modal.Header className="bg-dark">
-                    <Modal.Title className="text-light">
-                        Let&apos;s Create your Profile Amigo!!
-                    </Modal.Title>
-                </Modal.Header>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  First Name
+                </label>
+                <input
+                  onChange={this.handleChangeFirstName}
+                  placeholder="name input"
+                  type="text"
+                  value={this.state.FirstName}
+                  id="email"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  required
+                />
+              </div>
 
-                <Modal.Body className="bg-dark">
-                    <Form.Group >
-                        <Form.Label>
-                            <div className="text-danger float-start">
-                                *
-                            </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Email Address:
+                </label>
+                <input
+                  disabled
+                  type="email"
+                  value={this.state.email}
+                  id="email"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                />
+              </div>
 
-                            <span className="text-light">
-                                {' '}
-                                First Name:
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Degree:
+                </label>
+                <select
+                  className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                  onChange={this.handleChangeDegree}
+                  required
+                >
+                  <option value="" defaultChecked>
+                    ---Select Degree---
+                  </option>
 
-                                {' '}
-                            </span>
-                        </Form.Label>
+                  <option value="M">M-Tech</option>
+                  <option value="B">B-Tech</option>
 
-                        <Form.Control
-                            className="form-control bg-secondary text-white border-secondary border-1"
-                            onChange={this.handleChangeFirstName}
-                            placeholder="name input"
-                            type="text"
-                            value={this.state.FirstName}
-                        />
+                  <option value="P">Ph.D.</option>
+                  <option value="F">Faculty</option>
+                </select>
+              </div>
 
-                        <br />
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Degree:
+                </label>
+                <select
+                  className="text-lg indent-4 rounded-xl shadow-inner outline-2 outline-slate-50 w-4/5"
+                  onChange={this.handleChangeCourse}
+                  required={this.state.course === "B"}
+                  value={this.state.course}
+                >
+                  <option value="" defaultChecked>
+                    ---Select Course---
+                  </option>
 
-                        <Form.Label className="text-light">
-                            Last Name:
-                            {' '}
-                        </Form.Label>
+                  <option value="CSAI">CSAI</option>
 
-                        <Form.Control
-                            className="form-control bg-secondary text-white border-secondary border-1"
-                            onChange={this.handleChangeLastName}
-                            placeholder="name input"
-                            type="text"
-                            value={this.state.LastName}
-                        />
+                  <option value="CSE">CSE</option>
 
-                        <br />
+                  <option value="CSB">CSB</option>
 
-                        <Form.Label className="text-light">
-                            Email Address:
-                            {' '}
-                        </Form.Label>
+                  <option value="CSD">CSD</option>
 
-                        <Form.Control
-                            className="form-control disabled bg-secondary text-white border-secondary border-1"
-                            disabled
-                            type="email"
-                            value={this.state.email}
-                        />
+                  <option value="CSSS">CSSS</option>
 
-                        <br />
+                  <option value="CSAM">CSAM</option>
 
-                        <Form.Label>
+                  <option value="ECE">ECE</option>
+                </select>
+              </div>
 
-                            <span className="text-light">
-                                {' '}
-                                Degree:
+              <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                <button
+                  className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={() => {
+                    this.handleCloseModal.bind(this);
+                  }}
+                >
+                  Close
+                </button>
+                <button
+                  className="bg-[#538EE1]/[0.8] text-white active:bg-[#538EE1] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  onClick={this.handleSubmit}
+                  type="submit"
+                  value="Submit"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </Modal>
+        </div>
+        // <Modal
+        //   aria-labelledby="example-custom-modal-styling-title"
+        //   backdrop="static"
+        //   dialogClassName="modal-100w"
+        //   handleClose={this.handleCloseModal.bind(this)}
+        //   keyboard={false}
+        //   show={this.state.currentModal}
+        //   className=""
+        // >
+        //   <Modal.Header className="bg-dark">
+        //     <Modal.Title className="text-light">
+        //       Let&apos;s Create your Profile Amigo!!
+        //     </Modal.Title>
+        //   </Modal.Header>
 
-                                {' '}
-                            </span>
-                        </Form.Label>
+        //   <Modal.Body className="bg-dark">
+        //     <Form.Group>
+        //       <Form.Label>
+        //         <div className="text-danger float-start">*</div>
 
-                        <Form.Select
-                            className="form-control required bg-secondary text-white border-secondary border-1"
-                            onChange={this.handleChangeDegree}
-                            required
-                            value={this.state.degree}
-                        >
-                            <option value="">
-                                ---Select Degree---
-                            </option>
+        //         <span className="text-light"> First Name: </span>
+        //       </Form.Label>
 
-                            <option value="M" >
-                                M-Tech
-                            </option>
+        //       <Form.Control
+        //         className="form-control bg-secondary text-white border-secondary border-1"
+        //         onChange={this.handleChangeFirstName}
+        //         placeholder="name input"
+        //         type="text"
+        //         value={this.state.FirstName}
+        //       />
 
-                            <option value="B">
-                                B-Tech
-                            </option>
+        //       <br />
 
-                            <option value="P">
-                                Ph.D.
-                            </option>
+        //       <Form.Label className="text-light">Last Name: </Form.Label>
 
-                            <option value="F">
-                                Faculty
-                            </option>
-                        </Form.Select>
+        //       <Form.Control
+        //         className="form-control bg-secondary text-white border-secondary border-1"
+        //         onChange={this.handleChangeLastName}
+        //         placeholder="name input"
+        //         type="text"
+        //         value={this.state.LastName}
+        //       />
 
-                        <br />
+        //       <br />
 
-                        <Form.Label>
+        //       <Form.Label className="text-light">Email Address: </Form.Label>
 
-                            <span className="text-light">
-                                {' '}
-                                Course:
+        //       <Form.Control
+        //         className="form-control disabled bg-secondary text-white border-secondary border-1"
+        //         disabled
+        //         type="email"
+        //         value={this.state.email}
+        //       />
 
-                                {' '}
-                            </span>
-                        </Form.Label>
+        //       <br />
 
-                        <Form.Select
-                            className="form-control required bg-secondary text-white border-secondary border-1"
-                            onChange={this.handleChangeCourse}
-                            required={this.state.course==="B"}
-                            value={this.state.course}
-                        >
+        //       <Form.Label>
+        //         <span className="text-light"> Degree: </span>
+        //       </Form.Label>
 
-                            <option value="">
-                                ---Select Course---
-                            </option>
+        //       <Form.Select
+        //         className="form-control required bg-secondary text-white border-secondary border-1"
+        //         onChange={this.handleChangeDegree}
+        //         required
+        //         value={this.state.degree}
+        //       >
+        //         <option value="">---Select Degree---</option>
 
-                            <option value="CSAI">
-                                CSAI
-                            </option>
+        //         <option value="M">M-Tech</option>
 
-                            <option value="CSE">
-                                CSE
-                            </option>
+        //         <option value="B">B-Tech</option>
 
-                            <option value="CSB">
-                                CSB
-                            </option>
+        //         <option value="P">Ph.D.</option>
 
-                            <option value="CSD">
-                                CSD
-                            </option>
+        //         <option value="F">Faculty</option>
+        //       </Form.Select>
 
-                            <option value="CSSS">
-                                CSSS
-                            </option>
+        //       <br />
 
-                            <option value="CSAM">
-                                CSAM
-                            </option>
+        //       <Form.Label>
+        //         <span className="text-light"> Course: </span>
+        //       </Form.Label>
 
-                            <option value="ECE">
-                                ECE
-                            </option>
+        //       <Form.Select
+        //         className="form-control required bg-secondary text-white border-secondary border-1"
+        //         onChange={this.handleChangeCourse}
+        //         required={this.state.course === "B"}
+        //         value={this.state.course}
+        //       >
+        //         <option value="">---Select Course---</option>
 
-                        </Form.Select>
+        //         <option value="CSAI">CSAI</option>
 
-                    </Form.Group>
+        //         <option value="CSE">CSE</option>
 
-                </Modal.Body>
+        //         <option value="CSB">CSB</option>
 
-                <Modal.Footer className="bg-dark">
-                    <div className="text-danger float-start">
-                        * Required
-                    </div>
+        //         <option value="CSD">CSD</option>
 
-                    <button
-                        className="btn btn-primary"
-                        onClick={this.handleSubmit}
-                        type="submit"
-                        value="Submit"
-                    >
-                        Submit
-                    </button>
-                </Modal.Footer>
-            </Modal>
-        );
+        //         <option value="CSSS">CSSS</option>
+
+        //         <option value="CSAM">CSAM</option>
+
+        //         <option value="ECE">ECE</option>
+        //       </Form.Select>
+        //     </Form.Group>
+        //   </Modal.Body>
+
+        //   <Modal.Footer className="bg-dark">
+        //     <div className="text-danger float-start">* Required</div>
+
+        //     <button
+        //       className="btn btn-primary"
+        //       onClick={this.handleSubmit}
+        //       type="submit"
+        //       value="Submit"
+        //     >
+        //       Submit
+        //     </button>
+        //   </Modal.Footer>
+        // </Modal>
+      );
   }
 }
 
 export default FormSignIn;
-
-
 
 // <Modal.Body className="bg-dark">
 //                     <Modal.Title className='bg-light'>
@@ -455,12 +532,22 @@ export default FormSignIn;
 //                                 </button>
 //
 //                                 <div className="text-danger float-left">
-{/*                                    * Required*/}
-{/*                                </div>*/}
+{
+  /*                                    * Required*/
+}
+{
+  /*                                </div>*/
+}
 
-{/*                            </div>*/}
-{/*                        </div>*/}
-{/*                    </form>*/}
-{/*                </Modal.Body>*/}
-
-
+{
+  /*                            </div>*/
+}
+{
+  /*                        </div>*/
+}
+{
+  /*                    </form>*/
+}
+{
+  /*                </Modal.Body>*/
+}
